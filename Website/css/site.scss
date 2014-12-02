@@ -1,0 +1,184 @@
+$cubeTop: #333;
+$cubeLeft: #222;
+$cubeRight: #111;
+$bannerBlue: #070f4f;
+
+$pink: #F2358D;
+$blue: #05AFF2;
+$green: #BFF205;
+$yellow: #ffff00;
+
+html {
+    min-height: 100%;
+    position: relative;
+    color: black;
+}
+
+body {
+    background-color: $cubeRight;
+    background-image: linear-gradient(30deg, $cubeTop 12%, transparent 12.5%, transparent 87%, $cubeTop 87.5%, $cubeTop), linear-gradient(150deg, $cubeTop 12%, transparent 12.5%, transparent 87%, $cubeTop 87.5%, $cubeTop), linear-gradient(30deg, $cubeTop 12%, transparent 12.5%, transparent 87%, $cubeTop 87.5%, $cubeTop), linear-gradient(150deg, $cubeTop 12%, transparent 12.5%, transparent 87%, $cubeTop 87.5%, $cubeTop), linear-gradient(60deg, $cubeLeft 25%, transparent 25.5%, transparent 75%, $cubeLeft 75%, $cubeLeft), linear-gradient(60deg, $cubeLeft 25%, transparent 25.5%, transparent 75%, $cubeLeft 75%, $cubeLeft);
+    background-size: 80px 140px;
+    background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+
+    #banner {
+        background: $bannerBlue;
+        width: 100%;
+        height: 250px;
+        background-image: url("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/Banner.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    footer
+    {
+        width: 100%;
+        height: 40px;
+        background: $bannerBlue;
+    }
+
+    .rainbow {
+        position: absolute;
+        width: 80px;
+        height: 100%;
+        z-index: -1;
+    }
+
+    .rainbow_left {
+        left: 80px;
+        background-image: linear-gradient( to right, $blue, $blue 25%, $green 25%, $green 50%, $yellow 50%, $yellow 75%, $pink 75%, $pink 100% );
+    }
+
+    .rainbow_right {
+        right: 80px;
+        background-image: linear-gradient( to left, $blue, $blue 25%, $green 25%, $green 50%, $yellow 50%, $yellow 75%, $pink 75%, $pink 100% );
+    }
+
+
+    #content {        
+        width: 960px;
+        height: auto;
+        margin: 0 auto;
+
+        nav
+        {          
+            margin: 0 auto;
+            width: 200px;
+        }
+
+        #game
+        {     
+            width: 100%;
+            min-height: 512px;
+
+            .game_window
+            {
+                background: white;
+                border: solid $blue 32px;
+                box-sizing: border-box;
+                width: 100%;
+                min-height: 512px;
+                margin: 32px;
+                
+                .country_flag
+                {
+                    height: 32px;
+                }
+
+                h1{
+                    font-family: "VCR OSD Mono", Arial, Helvetica, sans-serif;
+                    color: black;
+                    margin: 16px;
+                    padding: 16px;
+                }
+
+                h1:after
+                {
+                    content: " █";
+                }
+
+                .btn_big
+                {                    
+                    font-family: "Note This", Arial, Helvetica, sans-serif;
+                    font-size: 24px;
+                    display: block;
+                    padding: 8px;
+                    color: black;
+                    background: none;
+                    background: url("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/btn.png");
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    outline: none;
+                    border: none;
+                    margin: 32px auto;
+                    width: 177px;
+                    height: 110px;
+                }
+
+                .btn_big:hover, .btn_big:focus
+                {
+                    background: url("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/btn_hover.png");
+                    -webkit-transition: all 0.2s ease-out;
+                    -moz-transition: all 0.2s ease-out;
+                    -ms-transition: all 0.2s ease-out;
+                    -o-transition: all 0.2s ease-out;
+                    transition: all 0.2s ease-out;
+                    outline: none;
+                    cursor: pointer;
+                }
+
+                .txt_big
+                {
+                    font-family: "VCR OSD Mono", Arial, Helvetica, sans-serif;
+                    font-size: 32px;
+                    text-transform: uppercase;
+                }
+
+                .txt_big::selection {
+                    background: black;
+                    color: white;
+                }
+                
+                .txt_big::-moz-selection
+                {
+                    background: black;
+                    color: white;
+                }
+                
+                #RecordingLight
+                {
+                    fill:#f3f3f3 !important;
+                }
+                
+                #Layer_1
+                {
+                    Rect
+                    {
+                        fill:#ffff00 !important;
+                    }
+                }
+                
+                #Recorder
+                {
+                        
+                }
+                
+                .recoderControlls
+                {
+                    #RecordingLight
+                    {
+                        fill: rgb(21, 4, 12);
+                    }
+                }
+            }
+
+            .hidden
+            {
+                display: none;
+            }
+        }
+    }
+}

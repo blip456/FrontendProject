@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>The Big 80s Quiz</title>
+        <link href="css/site.css" rel="stylesheet" />
+    </head>
+
+    <body ng-app>
+        <div class="rainbow rainbow_left"></div>
+        <div class="rainbow rainbow_right"></div>
+        <div id="banner">
+            <div id="logo"></div>
+
+        </div>
+
+        <div id="content">
+            <div id="game" ng-controller="QuestionController">
+                <div id="intro" class="game_window">
+                    <h1>Welcome</h1>
+                    <nav>
+                        <input type="button" value="Start" name="btnPlay" id="btnPlay" class="btn_big" />
+                        <input type="button" value="Howto" name="btnHow" id="btnHow" class="btn_big" />
+                        <input type="button" value="Highscore" name="btnHigh" id="btnHigh" class="btn_big" />
+                    </nav>
+                </div>
+
+                <div id="enter_name" class="hidden game_window">
+                    <h1>Fill in your name</h1>
+                    <input type="text" placeholder="Name" name="txtName" id="txtName" class="txt_big"/>
+                    <div>
+
+                    </div>
+                    <input type="button" value="Next" name="btnEnterNameNext" class="btn_big"/>
+                </div>
+
+                <div id="quiz" class="hidden game_window">
+                    <h1>Answer the questions</h1>
+                    <img class="inject-me recorder" src="Recorder.svg">
+                    <ul>
+                        <li ng-repeat="q in questions">
+                            <h2 class="category">{{q.Category}}</h2>
+                            <p>{{q.Quest}}</p>
+<!--                            <img src="Recorder.svg" class="recoderControlls"/>-->
+
+                        </li>
+                    </ul>
+                </div>
+
+                <form id="highscore" class="hidden game_window">
+                    <h1>The highscore</h1>
+                </form>
+            </div>
+
+        </div>
+
+        <footer>
+            <p>&copy; <a href="http://www.yoranbroodcooren.me">Yoran Broodcooren</a>
+            </p>
+        </footer>
+
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
+        <script src="js/angular/angular.js"></script>
+        <script src="js/app/Question/Question.js"></script>
+        <script src="js/app/Question/QuestionController.js"></script>
+        <script src="js/svg-injector.js"></script>
+        <script src="js/site.js"></script>
+    </body>
+
+</html>

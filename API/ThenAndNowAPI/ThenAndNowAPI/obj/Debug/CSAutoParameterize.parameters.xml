@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="ConnectionString-Web.config Connection String" description="ConnectionString Connection String used in web.config by the application to access the database." defaultValue="Server=tcp:pe8krewqq5.database.windows.net,1433;Database=thenandnowdb;User ID=blip456@pe8krewqq5;Password=H0we$t123;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Yoran\.Yoran\\Dropbox\\School\\_Semester\ 5\\Frontend\ Webdevelopment\\_Project\\_Site\\API\\ThenAndNowAPI\\ThenAndNowAPI\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ConnectionString']/@connectionString" />
+  </parameter>
+</parameters>
