@@ -90,8 +90,13 @@ function enterNameNext()
     var iMin = 0;
     var preSec = "0";
     var preMin = "0"; 
-    
+
     var arrAnswers = [];
+
+    var allQuestions = quiz.querySelector("#questions").children;
+    var l = allQuestions.length; 
+    hideAllQuestions();
+    showNextQuestion();
     
     recorder = quiz.querySelector(".recorder");
     recordingLight = recorder.querySelector("#RecordingLight");
@@ -105,11 +110,43 @@ function enterNameNext()
     // click listeneres
     btnBefore.addEventListener("click", function(){next(1);});
     btnAfter.addEventListener("click", function(){next(0);});
-    
-    
-    
+
+    function hideAllQuestions()
+    {
+        for(var i=0; i<=l-1; i++)
+        {            
+            allQuestions[i].className = "hidden";
+        }
+    }
+
+    function showNextQuestion()
+    {     
+        hideAllQuestions();    
+        allQuestions[iQuestion-1].className = "visible";        
+    }
+
+
     function next(isBefore)
     {
+        /*       var ur = "http://localhost:49930/api/v1/values";
+        console.log(ur);
+        var blah = [];
+        blah.push(true);
+        blah.push(true);
+        blah.push(true);
+        blah.push(false);
+        blah.push(true);
+
+        $.ajax({
+            url: ur,
+            data: blah,
+            type: 'post',
+            dataType: 'application/text',
+            success: function(data) {
+                alert(blah);
+            }
+        });*/
+
         arrAnswers.push(isBefore);
         iQuestion +=1
         if(iQCounterE < 9)
@@ -124,9 +161,10 @@ function enterNameNext()
             txtCounter3.innerHTML = iQCounterE ;           
             txtCounter2.innerHTML = iQCounterT;            
         }
-    }
 
-    
+        showNextQuestion();
+    }       
+
     var isBlink = false;
     setInterval(function () {
         if(isBlink)

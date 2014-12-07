@@ -39,7 +39,7 @@
                 <div id="quiz" class="hidden game_window">
                     <h1>Answer the questions</h1>
                     <img class="inject-me recorder" src="Recorder.svg">
-                    <ul>
+                    <ul id="questions">
                         <li ng-repeat="q in questions">
                             <h2 class="category">{{q.Category}}</h2>
                             <p>{{q.Quest}}</p>
@@ -64,6 +64,7 @@
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 
         <script src="js/angular/angular.js"></script>
+        <script src="js/jquery-2.1.1.min.js"></script>
         <script src="js/app/Question/Question.js"></script>
         <script src="js/app/Question/QuestionController.js"></script>
         <script src="js/svg-injector.js"></script>
