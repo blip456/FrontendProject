@@ -21,6 +21,7 @@ var country_code = "";
 var player_name = "";
 var txtPlayerName;
 var btnEnterNameNext;
+var enterNameRecorder;
 
 // Elements to inject
 var mySVGsToInject = document.querySelectorAll('img.inject-me');
@@ -60,7 +61,7 @@ function init()
 
     // click listeneres
     btnPlay.addEventListener("click",play);
-    btnEnterNameNext.addEventListener("click", enterNameNext);
+    //btnEnterNameNext.addEventListener("click", enterNameNext);
 
 
     getLocation();
@@ -74,6 +75,30 @@ function play()
     intro.className = "hidden";
     enter_name.className = "";
     enter_name.className = game_window_class;
+    
+    enterNameRecorder = enter_name.querySelector("#startRecorder");
+    enterNameRecorder.setAttribute("ondrop", "drop(event)");
+    enterNameRecorder.setAttribute("ondragover", "allowDrop(event)");
+}
+
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {    
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+    console.log(enterNameRecorder);
+    var cassettePlaceholder =  enterNameRecorder.querySelector("#recorderPlaceholder");
+    console.log(document.getElementById(data));
+    cassettePlaceholder.innerHTML += '<foreignObject x="50" y="50" width="200" height="150"><input type="text" placeholder="Name" name="txtName" id="txtName" class="txt_big" maxlength="16" draggable="true" ondragstart="drag(event)"/></foreignObject>';
+    //cassettePlaceholder.appendChild(document.getElementById(data));
 }
 
 function enterNameNext()
@@ -111,6 +136,8 @@ function enterNameNext()
     btnBefore.addEventListener("click", function(){next(1);});
     btnAfter.addEventListener("click", function(){next(0);});
 
+    console.log(allQuestions);
+    
     function hideAllQuestions()
     {
         for(var i=0; i<=l-1; i++)
@@ -122,7 +149,8 @@ function enterNameNext()
     function showNextQuestion()
     {     
         hideAllQuestions();    
-        allQuestions[iQuestion-1].className = "visible";        
+        allQuestions[iQuestion].className = "visible";   
+        console.log(allQuestions);
     }
 
 

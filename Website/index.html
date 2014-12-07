@@ -28,12 +28,13 @@
                 </div>
 
                 <div id="enter_name" class="hidden game_window">
-                    <h1>Fill in your name</h1>
-                    <input type="text" placeholder="Name" name="txtName" id="txtName" class="txt_big"/>
-                    <div>
+                    <h1>Write your name</h1>
+                    <input type="text" placeholder="Name" name="txtName" id="txtName" class="txt_big" maxlength="16" draggable="true"
+                           ondragstart="drag(event)"/>
 
-                    </div>
-                    <input type="button" value="Next" name="btnEnterNameNext" class="btn_big"/>
+
+                    <img src="Recorder.svg" class="inject-me recorder" id="startRecorder" ondrop="drop(event)" ondragover="allowDrop(event)"/>
+                    <!--                    <input type="button" value="Next" name="btnEnterNameNext" class="btn_big"/>-->
                 </div>
 
                 <div id="quiz" class="hidden game_window">
@@ -43,8 +44,6 @@
                         <li ng-repeat="q in questions">
                             <h2 class="category">{{q.Category}}</h2>
                             <p>{{q.Quest}}</p>
-<!--                            <img src="Recorder.svg" class="recoderControlls"/>-->
-
                         </li>
                     </ul>
                 </div>
