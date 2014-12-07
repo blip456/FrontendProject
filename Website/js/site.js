@@ -52,16 +52,15 @@ function init()
     highscore = game.children[3];
 
     // intro
-    btnPlay = document.getElementById("btnPlay");
+    btnPlay = intro.querySelector("#btnPlay");
 
-    // enter_name
-    txtPlayerName = enter_name.children[1];
-    txbLocation = enter_name.children[2];
-    btnEnterNameNext = enter_name.children[3];
+    // enter_name    
+    btnEnterNameNext = enter_name.querySelector("#groupPlay");;
 
+    console.log(enter_name);
     // click listeneres
     btnPlay.addEventListener("click",play);
-    //btnEnterNameNext.addEventListener("click", enterNameNext);
+    btnEnterNameNext.addEventListener("click", enterNameNext);
 
 
     getLocation();
@@ -94,11 +93,13 @@ function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
-    console.log(enterNameRecorder);
     var cassettePlaceholder =  enterNameRecorder.querySelector("#recorderPlaceholder");
-    console.log(document.getElementById(data));
-    cassettePlaceholder.innerHTML += '<foreignObject x="50" y="50" width="200" height="150"><input type="text" placeholder="Name" name="txtName" id="txtName" class="txt_big" maxlength="16" draggable="true" ondragstart="drag(event)"/></foreignObject>';
-    //cassettePlaceholder.appendChild(document.getElementById(data));
+    var input = document.getElementById(data); 
+    var txtName = enter_name.querySelector("#txtName");
+    var name = txtName.value;
+    cassettePlaceholder.innerHTML += '<foreignObject x="-55" y="0" width="140px" height="100px"> <input type="text" placeholder="Name" name="txtName" id="cassetteName" class="txt_big" maxlength="16" value="'+name+'" draggable="true" ondragstart="drag(event)"/></foreignObject>';
+
+  
 }
 
 function enterNameNext()
@@ -273,7 +274,7 @@ function getCity(position)
             if(city != '' && state != '' && country !='' && country_code !='') {                
                 var htmlBuilder = "";
                 htmlBuilder = "<img class='country_flag' src=http://www.geonames.org/flags/x/"+country_code.toLowerCase()+".gif><p>" + city + "</p>";
-                txbLocation.innerHTML = htmlBuilder;
+                //txbLocation.innerHTML = htmlBuilder;
             }
         } 
     });
