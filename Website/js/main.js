@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", init);
 // Main variables
 var game;
 var game_window_class = "game_window";
+var blinkTimer;
 
 // Screen elements
 var intro;
@@ -28,11 +29,13 @@ var player_name = "";
 var inputName;
 var nameRecorder;
 var cassettePlaceholder;
+var cassettePlaceholderName;
 var btnEnterNameNext;
 
 
 // Quiz elements
 var quizRecorder;
+var cassetteName;
 var allQuestions;
 var recordingLight;
 var btnBefore;
@@ -59,26 +62,26 @@ var arrAnswers = [];
 function init()
 {
 
-	//Injecting SVG
-	var svgInject = document.querySelectorAll("img.inject-me");
-	SVGInjector(svgInject);
+    //Injecting SVG
+    var svgInject = document.querySelectorAll("img.inject-me");
+    SVGInjector(svgInject);
 
-	// Get main object using the DOM
-	game = document.getElementById("game");
+    // Get main object using the DOM
+    game = document.getElementById("game");
 
-	// Get 4 screen objects without DOM
-	intro = game.querySelector("#intro");
-	enter_name = game.querySelector("#enter_name");
-	quiz = game.querySelector("#quiz");
+    // Get 4 screen objects without DOM
+    intro = game.querySelector("#intro");
+    enter_name = game.querySelector("#enter_name");
+    quiz = game.querySelector("#quiz");
 
-	// Getting elements
-	// Intro
-	btnIntroPlay = intro.querySelector("#btnPlay");
-	btnIntroHowTo = intro.querySelector("#btnHow");
-	btnIntroHighscore = intro.querySelector("#btnHigh");
+    // Getting elements
+    // Intro
+    btnIntroPlay = intro.querySelector("#btnPlay");
+    btnIntroHowTo = intro.querySelector("#btnHow");
+    btnIntroHighscore = intro.querySelector("#btnHigh");
 
-	// Listeners
-	btnIntroPlay.addEventListener("click", next_intro);
+    // Listeners
+    btnIntroPlay.addEventListener("click", next_intro);
 }
 
 // Functions
@@ -86,62 +89,68 @@ function init()
 // Click for next screen functions
 function next_intro()
 {
-	intro.className = "hidden";
+    intro.className = "hidden";
     enter_name.className = "";
     enter_name.className = game_window_class;
 
     // Enter name
     // Getting elements/vars
-	inputName = enter_name.querySelector("#txtName");
-	nameRecorder = enter_name.querySelector("#startRecorder");
-	btnEnterNameNext = enter_name.querySelector("#groupPlay");
+    inputName = enter_name.querySelector("#txtName");
+    nameRecorder = enter_name.querySelector("#startRecorder");
+    btnEnterNameNext = enter_name.querySelector("#groupPlay");
+    cassettePlaceholder = nameRecorder.querySelector("#Cassette");
+    cassettePlaceholderName = nameRecorder.querySelector("#yourNameCassette");
 
-	// Setting elements/vars
+    // Setting elements/vars
     nameRecorder = enter_name.querySelector("#startRecorder");
     nameRecorder.setAttribute("ondrop", "drop(event)");
     nameRecorder.setAttribute("ondragover", "allowDrop(event)");
+    cassettePlaceholder.setAttribute("class", "hidden");
 
-	// Listener
-	btnEnterNameNext.addEventListener("click", next_enter_name);
+    // Listener
+    btnEnterNameNext.addEventListener("click", next_enter_name);
 }
 
 function next_enter_name()
 {
-	enter_name.className = "hidden";
+    enter_name.className = "hidden";
     quiz.className = "";
     quiz.className = game_window_class;  
 
-	// Quiz
+    // Quiz
     // Getting elements/vars
-	quizRecorder = quiz.querySelector(".recorder");
-	ulQuestions = quiz.querySelector("#questions");
-	recordingLight = quiz.querySelector("#RecordingLight");
-	btnBefore = quiz.querySelector("#groupBack");
-	btnAfter = quiz.querySelector("#groupForward");
-	btnStop = quiz.querySelector("#groupStop");
-	txtLCD = quiz.querySelector("#txtLCD");
-	txtCounter1 = quiz.querySelector("#txtCounter1");
-	txtCounter2 = quiz.querySelector("#txtCounter2");
-	txtCounter3 = quiz.querySelector("#txtCounter3");
-	allQuestions = quiz.querySelector("#questions").children;  
+    quizRecorder = quiz.querySelector(".recorder");
+    nameRecorder = quiz.querySelector("#yourNameCassette");
+    ulQuestions = quiz.querySelector("#questions");
+    recordingLight = quiz.querySelector("#RecordingLight");
+    btnBefore = quiz.querySelector("#groupBack");
+    btnAfter = quiz.querySelector("#groupForward");
+    btnStop = quiz.querySelector("#groupStop");
+    txtLCD = quiz.querySelector("#txtLCD");
+    txtCounter1 = quiz.querySelector("#txtCounter1");
+    txtCounter2 = quiz.querySelector("#txtCounter2");
+    txtCounter3 = quiz.querySelector("#txtCounter3");
+    allQuestions = quiz.querySelector("#questions").children;  
 
-	// Setting elements/vars
-	lengthAllQuestions = allQuestions.length;
+    // Setting elements/vars
+    lengthAllQuestions = allQuestions.length;
+    nameRecorder.setAttribute("class", "cassetteName");
+    nameRecorder.innerHTML = player_name;
 
-	// Listener
-	btnBefore.addEventListener("click", function(){nextQuestion(1);});
-	btnAfter.addEventListener("click", function(){nextQuestion(0);});
+    // Listener
+    btnBefore.addEventListener("click", function(){nextQuestion(1);});
+    btnAfter.addEventListener("click", function(){nextQuestion(0);});
 
-	// Varia
-	hideAllQuestions();
-	showNextQuestion();
-	txtCounter3.innerHTML = iQCounterE;
+    // Varia
+    hideAllQuestions();
+    showNextQuestion();
+    txtCounter3.innerHTML = iQCounterE;
 
-	setInterval(function()
-		{
-			blinkRecLight();
-			controlTimer();
-		}, 500);
+    blinkTimer = setInterval(function()
+                {
+        blinkRecLight();
+        controlTimer();
+    }, 100);
 }
 
 // Screen specific functions
@@ -197,13 +206,15 @@ function drag(ev)
 
 function drop(ev) 
 {    
-	ev.preventDefault();
- 	var data = ev.dataTransfer.getData("text");
- 	ev.target.appendChild(document.getElementById(data));
-	cassettePlaceholder = nameRecorder.querySelector("#recorderPlaceholder");
-	player_name = inputName.value;
-	//TODO: set innerHTML = inputName element
-	cassettePlaceholder.innerHTML += '<foreignObject x="0" y="160" width="325px" height="256px"> <input disabled type="text" placeholder="Name" name="txtName" id="cassetteName" class="txt_big" maxlength="16" value="'+player_name+'" draggable="true" ondragstart="drag(event)"/></foreignObject>';
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+    player_name = inputName.value;
+    //TODO: set innerHTML = inputName element
+    //cassettePlaceholder.innerHTML += '<foreignObject x="0" y="160" width="325px" height="256px"> <input disabled type="text" placeholder="Name" name="txtName" id="cassetteName" class="txt_big" maxlength="16" value="'+player_name+'" draggable="true" ondragstart="drag(event)"/></foreignObject>';
+    cassettePlaceholder.setAttribute("class", "visible");
+    cassettePlaceholderName.setAttribute("class", "cassetteName");
+    cassettePlaceholderName.innerHTML = player_name;
 }
 
 // Quiz
@@ -223,73 +234,87 @@ function showNextQuestion()
 
 function nextQuestion(isBefore)
 {
-	// Add answer to array
-	arrAnswers.push(isBefore);
-
-    iQuestion +=1
-    if(iQCounterE < 9)
+    if(iQuestion < 29)
     {
-        iQCounterE +=1;
-        txtCounter3.innerHTML = iQCounterE;
-    }
-    else
-    {   
-        iQCounterE = 0;
-        iQCounterT +=1;
-        txtCounter3.innerHTML = iQCounterE ;           
-        txtCounter2.innerHTML = iQCounterT;            
-    }
+        // Add answer to array
+        arrAnswers.push(isBefore);
 
-    showNextQuestion();
+        iQuestion +=1
+        if(iQCounterE < 9)
+        {
+            iQCounterE +=1;
+            txtCounter3.innerHTML = iQCounterE;
+        }
+        else
+        {   
+            iQCounterE = 0;
+            iQCounterT +=1;
+            txtCounter3.innerHTML = iQCounterE ;           
+            txtCounter2.innerHTML = iQCounterT;            
+        }
+
+        showNextQuestion();
+    }
+    // End the game
+    else if(iQuestion == 29)
+    {
+        // Stop the timer
+        window.clearInterval(blinkTimer);
+    }
+}
+
+function Game()
+{
+    //TODO: when at question 15 show the minigame
+    //Mini game will be about quickly rewinging a cassette tape with a Bic pen > your quiz time keeps running
 }
 
 function blinkRecLight()
 {
-	if(isBlink)
-	{
-		//TODO: use class togle for blinking instead of style fill
-		recordingLight.style.fill = "#CC0000";
-		isBlink = false;
-	}
-	else
-	{
-		//TODO: use class togle for blinking instead of style fill
-		recordingLight.style.fill = "#FF0000";
-		isBlink = true;
-	}
+    if(isBlink)
+    {
+        //TODO: use class togle for blinking instead of style fill
+        recordingLight.style.fill = "#CC0000";
+        isBlink = false;
+    }
+    else
+    {
+        //TODO: use class togle for blinking instead of style fill
+        recordingLight.style.fill = "#FF0000";
+        isBlink = true;
+    }
 }
 
 function controlTimer()
 {
-	if(isBlink)
-	{
-	 	if(iSec == 59)
-	    {
-	        iMin +=1;
-	        iSec = 0;                
-	    }
-	    if(iSec <9)
-	    {
-	        preSec = "0";
-	    }
-	    else{
-	        preSec = "";
-	    }
-	    if(iMin < 10)
-	    {
-	        preMin = "0";
-	    }
-	    else
-	    {
-	        preMin = "";
-	    }
-	    if(iMin >= 60)
-	    {
-	        console.log("Game over");
-	    }
-
-	    iSec += 1;                                
-	    txtLCD.innerHTML = preMin+iMin+":"+preSec+iSec;
-	}
+    if(isBlink)
+    {
+        if(iSec == 59)
+        {
+            iMin +=1;
+            iSec = -1;                
+        }
+        if(iSec <9)
+        {
+            preSec = "0";
+        }
+        else{
+            preSec = "";
+        }
+        if(iMin < 10)
+        {
+            preMin = "0";
+        }
+        else
+        {
+            preMin = "";
+        }
+        if(iMin >= 60)
+        {
+            console.log("Game over");
+        }
+        iSec += 1;                                
+        txtLCD.innerHTML = preMin+iMin+":"+preSec+iSec;
+    }
 }
 

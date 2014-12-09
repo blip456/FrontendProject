@@ -105,7 +105,7 @@ body {
                 #txtName
                 {
                     background: none;
-                    background: url("../blah.png");
+                    background: url("../Cassette.svg");
                     background-repeat: no-repeat;
                     background-size: 400px 246px;
                     background-position: bottom, center;
@@ -116,34 +116,6 @@ body {
                     height: 35px;                     
                     margin: 0 auto;
                     display: block;
-                }
-
-                #cassetteName
-                {
-//                    background: none;
-//                    background: url("../blah.png");
-//                    background-repeat: no-repeat;
-//                    background-size: 130px 80px;
-//                    background-position: bottom, center;
-//                    outline: none;
-//                    border: none;
-//                    padding: 10px 10px 60px 10px;
-//                    width: 110px;
-//                    height: 10px;
-//                    font-size: 8px;
-                    background: none;
-                    background: url("../blah.png");
-                    background-repeat: no-repeat;
-                    background-size: 200px 123px;
-                    background-position: bottom, center;
-                    outline: none;
-                    border: none;
-                    padding: 17px 25px 90px 25px;
-                    width: 150px;                    
-                    height: 17px;                     
-                    margin: 0 auto;
-                    display: block;
-                    font-size: 14px;
                 }
 
                 .btn_big
@@ -218,6 +190,14 @@ body {
                     {
                         fill: rgb(21, 4, 12);
                     }
+                }
+                
+                .cassetteName
+                {
+                    fill: $bicBlue;
+                    font-family: "Note this";
+                    margin: 0 auto;
+                    text-transform: uppercase;
                 }
             }
 
