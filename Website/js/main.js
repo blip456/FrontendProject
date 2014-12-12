@@ -57,6 +57,8 @@ var preMin = "0";
 var lengthAllQuestions;
 var isBlink = false;
 var arrAnswers = [];
+// TODO: change this to false and set value true in the ondrop of Bic
+var penisInHole = true;
 
 
 function init()
@@ -147,10 +149,10 @@ function next_enter_name()
     txtCounter3.innerHTML = iQCounterE;
 
     blinkTimer = setInterval(function()
-                {
+                             {
         blinkRecLight();
         controlTimer();
-    }, 100);
+    }, 500);
 }
 
 // Screen specific functions
@@ -254,6 +256,10 @@ function nextQuestion(isBefore)
         }
 
         showNextQuestion();
+
+        // Check if 15 and start minigame
+        if(iQuestion == 14)
+            miniGame();
     }
     // End the game
     else if(iQuestion == 29)
@@ -263,11 +269,77 @@ function nextQuestion(isBefore)
     }
 }
 
-function Game()
+function miniGame()
 {
     //TODO: when at question 15 show the minigame
     //Mini game will be about quickly rewinging a cassette tape with a Bic pen > your quiz time keeps running
+    console.log("mini game");
+    // Vars
+    var iAmountTurned = 0;
+    var miniGamecassette = game.querySelector("#miniGameCassette");
+    var leftTape1 = miniGamecassette.querySelector("#leftTape1");
+    var leftTape2 = miniGamecassette.querySelector("#leftTape2");
+    var leftTape3 = miniGamecassette.querySelector("#leftTape3");
+    var leftTape4 = miniGamecassette.querySelector("#leftTape4");
+    var leftTape5 = miniGamecassette.querySelector("#leftTape5");
+    var leftTape6 = miniGamecassette.querySelector("#leftTape6");
+    var leftTape7 = miniGamecassette.querySelector("#leftTape7");
+    var leftTape8 = miniGamecassette.querySelector("#leftTape8");
+    var rightTape1 = miniGamecassette.querySelector("#leftTape1");
+    var rightTape2 = miniGamecassette.querySelector("#leftTape1");
+    var rightTape3 = miniGamecassette.querySelector("#leftTape1");
+    var rightTape4 = miniGamecassette.querySelector("#leftTape1");
+    var rightTape5 = miniGamecassette.querySelector("#leftTape1");
+    var rightTape6 = miniGamecassette.querySelector("#leftTape1");
+    var rightTape7 = miniGamecassette.querySelector("#leftTape1");
+    var rightTape8 = miniGamecassette.querySelector("#leftTape1");
+
+    // Show overlay in quiz with MiniGame layout
+
+    // Events
+    document.onmousewheel = turn;
+
+    function turn(e)
+    {
+        // Check if Bic pen is in the cassette hole
+        if(penisInHole)
+        {
+
+            // Disable scrolling of the rest of the document
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Switch case to add more tape to the cassette
+            switch(iAmountTurned)
+            {
+                case 2:
+                    break;
+                case 4:
+                    break;
+                case 8:
+                    break;
+                case 16:
+                    break;
+                case 32:                
+                    break;
+                case 64:
+                    break;
+                case 128:
+                    break;
+                case 256:
+                    // Re-enable the regular scrolling of the webpage + stop onmousewheel
+                    document.onmousewheel = function(e){return true};
+                    break;
+                default:
+                    break;
+            }
+
+            iAmountTurned ++;
+            console.log(iAmountTurned);
+        }
+    }
 }
+
 
 function blinkRecLight()
 {
