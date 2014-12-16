@@ -22,6 +22,7 @@ var player_name = "";
 var txtPlayerName;
 var btnEnterNameNext;
 var enterNameRecorder;
+var isNameInCassette = false;
 
 // Elements to inject
 var mySVGsToInject = document.querySelectorAll('img.inject-me');
@@ -59,8 +60,8 @@ function init()
 
     console.log(enter_name);
     // click listeneres
-    btnPlay.addEventListener("click",play);
-    btnEnterNameNext.addEventListener("click", enterNameNext);
+    //btnPlay.addEventListener("click",play);
+    //btnEnterNameNext.addEventListener("click", enterNameNext);
 
 
     getLocation();
@@ -89,7 +90,8 @@ function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
 }
 
-function drop(ev) {    
+function drop(ev) {  
+    isNameInCassette = true;
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));

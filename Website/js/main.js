@@ -9,6 +9,7 @@ var blinkTimer;
 var intro;
 var enter_name;
 var quiz;
+var minigame;
 var hightscore;
 
 // Intro elements
@@ -24,14 +25,14 @@ var country = "";
 var country_code = "";
 var player_name = "";
 
-
 // Enter name elements
 var inputName;
 var nameRecorder;
 var cassettePlaceholder;
 var cassettePlaceholderName;
 var btnEnterNameNext;
-
+var lblDrag;
+var isNameInCassette = false;
 
 // Quiz elements
 var quizRecorder;
@@ -45,6 +46,9 @@ var txtLCD;
 var txtCounter1;
 var txtCounter2;
 var txtCounter3;
+
+// Mini game elements
+var miniGameRecorder;
 
 // Quiz variables
 var iQuestion = 0;
@@ -74,6 +78,7 @@ function init()
     // Get 4 screen objects without DOM
     intro = game.querySelector("#intro");
     enter_name = game.querySelector("#enter_name");
+    minigame = game.querySelector("#mini_game");
     quiz = game.querySelector("#quiz");
 
     // Getting elements
@@ -82,7 +87,7 @@ function init()
     btnIntroHowTo = intro.querySelector("#btnHow");
     btnIntroHighscore = intro.querySelector("#btnHigh");
 
-    // Listeners
+    // Listeners   
     btnIntroPlay.addEventListener("click", next_intro);
 }
 
@@ -102,6 +107,7 @@ function next_intro()
     btnEnterNameNext = enter_name.querySelector("#groupPlay");
     cassettePlaceholder = nameRecorder.querySelector("#Cassette");
     cassettePlaceholderName = nameRecorder.querySelector("#yourNameCassette");
+    lblDrag = nameRecorder.querySelector("#lblDrag");
 
     // Setting elements/vars
     nameRecorder = enter_name.querySelector("#startRecorder");
@@ -109,50 +115,53 @@ function next_intro()
     nameRecorder.setAttribute("ondragover", "allowDrop(event)");
     cassettePlaceholder.setAttribute("class", "hidden");
 
-    // Listener
+    // Listener    
     btnEnterNameNext.addEventListener("click", next_enter_name);
 }
 
 function next_enter_name()
 {
-    enter_name.className = "hidden";
-    quiz.className = "";
-    quiz.className = game_window_class;  
+    if(isNameInCassette)
+    {
+        enter_name.className = "hidden";
+        quiz.className = "";
+        quiz.className = game_window_class;  
 
-    // Quiz
-    // Getting elements/vars
-    quizRecorder = quiz.querySelector(".recorder");
-    nameRecorder = quiz.querySelector("#yourNameCassette");
-    ulQuestions = quiz.querySelector("#questions");
-    recordingLight = quiz.querySelector("#RecordingLight");
-    btnBefore = quiz.querySelector("#groupBack");
-    btnAfter = quiz.querySelector("#groupForward");
-    btnStop = quiz.querySelector("#groupStop");
-    txtLCD = quiz.querySelector("#txtLCD");
-    txtCounter1 = quiz.querySelector("#txtCounter1");
-    txtCounter2 = quiz.querySelector("#txtCounter2");
-    txtCounter3 = quiz.querySelector("#txtCounter3");
-    allQuestions = quiz.querySelector("#questions").children;  
+        // Quiz
+        // Getting elements/vars
+        quizRecorder = quiz.querySelector(".recorder");
+        nameRecorder = quiz.querySelector("#yourNameCassette");
+        ulQuestions = quiz.querySelector("#questions");
+        recordingLight = quiz.querySelector("#RecordingLight");
+        btnBefore = quiz.querySelector("#groupBack");
+        btnAfter = quiz.querySelector("#groupForward");
+        btnStop = quiz.querySelector("#groupStop");
+        txtLCD = quiz.querySelector("#txtLCD");
+        txtCounter1 = quiz.querySelector("#txtCounter1");
+        txtCounter2 = quiz.querySelector("#txtCounter2");
+        txtCounter3 = quiz.querySelector("#txtCounter3");
+        allQuestions = quiz.querySelector("#questions").children;  
 
-    // Setting elements/vars
-    lengthAllQuestions = allQuestions.length;
-    nameRecorder.setAttribute("class", "cassetteName");
-    nameRecorder.innerHTML = player_name;
+        // Setting elements/vars
+        lengthAllQuestions = allQuestions.length;
+        nameRecorder.setAttribute("class", "cassetteName");
+        nameRecorder.innerHTML = player_name;
 
-    // Listener
-    btnBefore.addEventListener("click", function(){nextQuestion(1);});
-    btnAfter.addEventListener("click", function(){nextQuestion(0);});
+        // Listener
+        btnBefore.addEventListener("click", function(){nextQuestion(1);});
+        btnAfter.addEventListener("click", function(){nextQuestion(0);});
 
-    // Varia
-    hideAllQuestions();
-    showNextQuestion();
-    txtCounter3.innerHTML = iQCounterE;
+        // Varia
+        hideAllQuestions();
+        showNextQuestion();
+        txtCounter3.innerHTML = iQCounterE;
 
-    blinkTimer = setInterval(function()
-                             {
-        blinkRecLight();
-        controlTimer();
-    }, 500);
+        blinkTimer = setInterval(function()
+                                 {
+            blinkRecLight();
+            controlTimer();
+        }, 500);
+    }
 }
 
 // Screen specific functions
@@ -208,6 +217,7 @@ function drag(ev)
 
 function drop(ev) 
 {    
+    isNameInCassette = true;
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
@@ -217,6 +227,7 @@ function drop(ev)
     cassettePlaceholder.setAttribute("class", "visible");
     cassettePlaceholderName.setAttribute("class", "cassetteName");
     cassettePlaceholderName.innerHTML = player_name;
+    lblDrag.setAttribute("class", "hidden");
 }
 
 // Quiz
@@ -230,8 +241,9 @@ function hideAllQuestions()
 
 function showNextQuestion()
 {     
-    hideAllQuestions();    
-    allQuestions[iQuestion].className = "visible";   
+    hideAllQuestions();   
+    if(allQuestions.length > 0)
+        allQuestions[iQuestion].className = "visible";   
 }
 
 function nextQuestion(isBefore)
@@ -259,7 +271,7 @@ function nextQuestion(isBefore)
 
         // Check if 15 and start minigame
         if(iQuestion == 14)
-            miniGame();
+            startMiniGame();
     }
     // End the game
     else if(iQuestion == 29)
@@ -269,73 +281,47 @@ function nextQuestion(isBefore)
     }
 }
 
-function miniGame()
+function startMiniGame()
 {
     //TODO: when at question 15 show the minigame
+    minigame.className = "";
+    minigame.className = game_window_class;
     //Mini game will be about quickly rewinging a cassette tape with a Bic pen > your quiz time keeps running
     console.log("mini game");
     // Vars
     var iAmountTurned = 0;
-    var miniGamecassette = game.querySelector("#miniGameCassette");
-    var leftTape1 = miniGamecassette.querySelector("#leftTape1");
-    var leftTape2 = miniGamecassette.querySelector("#leftTape2");
-    var leftTape3 = miniGamecassette.querySelector("#leftTape3");
-    var leftTape4 = miniGamecassette.querySelector("#leftTape4");
-    var leftTape5 = miniGamecassette.querySelector("#leftTape5");
-    var leftTape6 = miniGamecassette.querySelector("#leftTape6");
-    var leftTape7 = miniGamecassette.querySelector("#leftTape7");
-    var leftTape8 = miniGamecassette.querySelector("#leftTape8");
-    var rightTape1 = miniGamecassette.querySelector("#leftTape1");
-    var rightTape2 = miniGamecassette.querySelector("#leftTape1");
-    var rightTape3 = miniGamecassette.querySelector("#leftTape1");
-    var rightTape4 = miniGamecassette.querySelector("#leftTape1");
-    var rightTape5 = miniGamecassette.querySelector("#leftTape1");
-    var rightTape6 = miniGamecassette.querySelector("#leftTape1");
-    var rightTape7 = miniGamecassette.querySelector("#leftTape1");
-    var rightTape8 = miniGamecassette.querySelector("#leftTape1");
+    var miniGamecassette = minigame.querySelector("#miniGameCassette");
+    var leftTape = miniGamecassette.querySelector("#leftTape");
+    var rightTape = miniGamecassette.querySelector("#rightTape");
+    var leftGear = miniGamecassette.querySelector("#leftGear");
+    var rightGear = miniGamecassette.querySelector("#rightGear");
 
     // Show overlay in quiz with MiniGame layout
 
     // Events
     document.onmousewheel = turn;
-
+    penisInHole = true;
     function turn(e)
     {
         // Check if Bic pen is in the cassette hole
         if(penisInHole)
         {
-
-            // Disable scrolling of the rest of the document
-            e.preventDefault();
-            e.stopPropagation();
-
-            // Switch case to add more tape to the cassette
-            switch(iAmountTurned)
+            if(iAmountTurned < 160)
             {
-                case 2:
-                    break;
-                case 4:
-                    break;
-                case 8:
-                    break;
-                case 16:
-                    break;
-                case 32:                
-                    break;
-                case 64:
-                    break;
-                case 128:
-                    break;
-                case 256:
-                    // Re-enable the regular scrolling of the webpage + stop onmousewheel
-                    document.onmousewheel = function(e){return true};
-                    break;
-                default:
-                    break;
-            }
+                // Disable scrolling of the rest of the document
+                e.preventDefault();
+                e.stopPropagation();
 
-            iAmountTurned ++;
-            console.log(iAmountTurned);
+                // Each scroll moves the left tape > and moves right tape <
+                leftTape.setAttribute("transform", "translate("+iAmountTurned/4+")");
+                rightTape.setAttribute("transform", "translate("+iAmountTurned/4+")");
+                leftGear.setAttribute("transform", "rotate("+iAmountTurned*4+" 146 167)");
+                rightGear.setAttribute("transform", "rotate("+iAmountTurned*4+" 349 167)");
+
+                iAmountTurned ++;
+            }
+            else
+                minigame.className = "hidden";
         }
     }
 }

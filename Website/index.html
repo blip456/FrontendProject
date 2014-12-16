@@ -35,7 +35,7 @@
 
                     <img src="Recorder.svg" class="inject-me recorder" id="startRecorder" ondrop="drop(event)" ondragover="allowDrop(event)"/>
                     <!--                    <input type="button" value="Next" name="btnEnterNameNext" class="btn_big"/>-->
-                </div>
+                </div>                                
 
                 <div id="quiz" class="hidden game_window">
                     <h1>Answer the questions</h1>
@@ -46,6 +46,10 @@
                             <p>{{q.Quest}}</p>
                         </li>
                     </ul>
+                </div>
+                
+                <div id="mini_game" class="hidden game_window">
+                    <img src="MiniGameCassette.svg" class="inject-me" id="miniGameCassette"/>
                 </div>
 
                 <form id="highscore" class="hidden game_window">
