@@ -88,8 +88,6 @@ function init()
     btnIntroHowTo = intro.querySelector("#btnHow");
     btnIntroHighscore = intro.querySelector("#btnHigh");
     
-    
-
     // Listeners   
     btnIntroPlay.addEventListener("click", next_intro);
 }
@@ -120,6 +118,7 @@ function next_intro()
     nameRecorder.setAttribute("ondragover", "allowDrop(event)");
     cassettePlaceholder.setAttribute("class", "hidden");
     txtLCD.setAttribute("class", "lcd_display");
+    btnEnterNameNext.classList.add("hover");
 
     // Listener    
     btnEnterNameNext.addEventListener("mousedown", function(){pressEffectDown(this);});

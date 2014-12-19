@@ -157,17 +157,21 @@ body {
                     text-transform: uppercase;
 
                 }
-                
+
                 .lcd_display
                 {
                     font-family: 'LCD';
                 }
-                
-                
-                
+
                 .hover:hover
                 {
                     cursor: pointer;
+                }
+
+                .drag:hover
+                {
+                    cursor: -webkit-zoom-grab;
+                    cursor: url(https://www.google.com/intl/en_ALL/mapfiles/openhand.cur), auto;
                 }
 
                 .txt_big::selection {
@@ -203,7 +207,7 @@ body {
                         fill: rgb(21, 4, 12);
                     }
                 }
-                
+
                 .cassetteName
                 {
                     fill: $bicBlue;
@@ -212,12 +216,22 @@ body {
                     text-transform: uppercase;
                 }
             }
-            
+
+            .overlay
+            {
+                position: absolute;
+                top:0;
+                left: 0;
+                width: 50%;
+                height: 50%;
+                margin: 25%;
+            }
+
             .notVisible
             {
                 visibility: hidden;
             }
-            
+
             .welvissible
             {
                 visibility: visible;
@@ -233,5 +247,6 @@ body {
                 display: block;
             }
         }
+
     }
 }
