@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", init);
 var game;
 var game_window_class = "game_window";
 var blinkTimer;
+var clickedElement;
 
 // Screen elements
 var intro;
@@ -86,6 +87,8 @@ function init()
     btnIntroPlay = intro.querySelector("#btnPlay");
     btnIntroHowTo = intro.querySelector("#btnHow");
     btnIntroHighscore = intro.querySelector("#btnHigh");
+    
+    
 
     // Listeners   
     btnIntroPlay.addEventListener("click", next_intro);
@@ -105,18 +108,22 @@ function next_intro()
     inputName = enter_name.querySelector("#txtName");
     nameRecorder = enter_name.querySelector("#startRecorder");
     btnEnterNameNext = enter_name.querySelector("#groupPlay");
+    var btnEnterNameNextDown = enter_name.querySelector("#groupPlayPressed");
     cassettePlaceholder = nameRecorder.querySelector("#Cassette");
     cassettePlaceholderName = nameRecorder.querySelector("#yourNameCassette");
     lblDrag = nameRecorder.querySelector("#lblDrag");
+    txtLCD = nameRecorder.querySelector("#txtLCD");
 
     // Setting elements/vars
     nameRecorder = enter_name.querySelector("#startRecorder");
     nameRecorder.setAttribute("ondrop", "drop(event)");
     nameRecorder.setAttribute("ondragover", "allowDrop(event)");
     cassettePlaceholder.setAttribute("class", "hidden");
+    txtLCD.setAttribute("class", "lcd_display");
 
     // Listener    
-    btnEnterNameNext.addEventListener("click", next_enter_name);
+    btnEnterNameNext.addEventListener("mousedown", function(){pressEffectDown(this);});
+    btnEnterNameNextDown.addEventListener("mouseup", function(){pressEffectUp();next_enter_name()});    
 }
 
 function next_enter_name()
@@ -140,16 +147,27 @@ function next_enter_name()
         txtCounter1 = quiz.querySelector("#txtCounter1");
         txtCounter2 = quiz.querySelector("#txtCounter2");
         txtCounter3 = quiz.querySelector("#txtCounter3");
-        allQuestions = quiz.querySelector("#questions").children;  
+        allQuestions = quiz.querySelector("#questions").children;
+        lblDrag = quizRecorder.querySelector("#lblDrag");
+        var btnBeforeDown = quizRecorder.querySelector("#groupBackPressed");
+        var btnForwardDown = quizRecorder.querySelector("#groupForwardPressed");
+        
+        
 
         // Setting elements/vars
         lengthAllQuestions = allQuestions.length;
         nameRecorder.setAttribute("class", "cassetteName");
         nameRecorder.innerHTML = player_name;
+        lblDrag.setAttribute("class", "hidden");
+        txtLCD.setAttribute("class", "lcd_display");
+        btnBefore.setAttribute("class", "hover");
+        btnAfter.setAttribute("class", "hover");
 
         // Listener
-        btnBefore.addEventListener("click", function(){nextQuestion(1);});
-        btnAfter.addEventListener("click", function(){nextQuestion(0);});
+        btnBefore.addEventListener("mousedown", function(){nextQuestion(1); pressEffectDown(this)});        
+        btnBeforeDown.addEventListener("mouseup", function(){pressEffectUp();});
+        btnAfter.addEventListener("mousedown", function(){nextQuestion(0); pressEffectDown(this)});
+        btnForwardDown.addEventListener("mouseup", function(){pressEffectUp();});
 
         // Varia
         hideAllQuestions();
@@ -162,6 +180,18 @@ function next_enter_name()
             controlTimer();
         }, 500);
     }
+}
+
+// General stuff
+function pressEffectDown(el)
+{
+    el.classList.toggle('hidden');
+    clickedElement = el;
+}
+
+function pressEffectUp()
+{
+    clickedElement.classList.toggle('hidden');
 }
 
 // Screen specific functions
@@ -203,8 +233,9 @@ function getCity(position)
     });
 }
 
-// Enter name
 
+
+// Enter name
 function allowDrop(ev) 
 {
     ev.preventDefault();
@@ -229,6 +260,8 @@ function drop(ev)
     cassettePlaceholderName.innerHTML = player_name;
     lblDrag.setAttribute("class", "hidden");
 }
+
+
 
 // Quiz
 function hideAllQuestions()
@@ -325,7 +358,6 @@ function startMiniGame()
         }
     }
 }
-
 
 function blinkRecLight()
 {

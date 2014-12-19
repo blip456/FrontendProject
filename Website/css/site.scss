@@ -157,6 +157,18 @@ body {
                     text-transform: uppercase;
 
                 }
+                
+                .lcd_display
+                {
+                    font-family: 'LCD';
+                }
+                
+                
+                
+                .hover:hover
+                {
+                    cursor: pointer;
+                }
 
                 .txt_big::selection {
                     background: black;
@@ -199,6 +211,16 @@ body {
                     margin: 0 auto;
                     text-transform: uppercase;
                 }
+            }
+            
+            .notVisible
+            {
+                visibility: hidden;
+            }
+            
+            .welvissible
+            {
+                visibility: visible;
             }
 
             .hidden

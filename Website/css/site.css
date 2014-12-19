@@ -122,34 +122,46 @@ body {
           font-size: 28px;
           text-transform: uppercase; }
         /* line 161, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        body #content #game .game_window .lcd_display {
+          font-family: 'LCD'; }
+        /* line 168, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        body #content #game .game_window .hover:hover {
+          cursor: pointer; }
+        /* line 173, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window .txt_big::selection {
           background: black;
           color: white; }
-        /* line 166, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        /* line 178, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window .txt_big::-moz-selection {
           background: black;
           color: white; }
-        /* line 174, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        /* line 186, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window #Layer_1 Rect {
           fill: #ffff00 !important; }
-        /* line 180, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        /* line 192, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window .recorder {
           width: 512px;
           margin: 0 auto;
           display: block; }
-        /* line 189, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        /* line 201, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window .recoderControlls #RecordingLight {
           fill: #15040c; }
-        /* line 195, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        /* line 207, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window .cassetteName {
           fill: #6666cc;
           font-family: "Note this";
           margin: 0 auto;
           text-transform: uppercase; }
-      /* line 204, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+      /* line 216, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+      body #content #game .notVisible {
+        visibility: hidden; }
+      /* line 221, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+      body #content #game .welvissible {
+        visibility: visible; }
+      /* line 226, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
       body #content #game .hidden {
         display: none; }
-      /* line 209, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+      /* line 231, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
       body #content #game .visible {
         display: block; }
 
