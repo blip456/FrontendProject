@@ -47,6 +47,11 @@ var txtLCD;
 var txtCounter1;
 var txtCounter2;
 var txtCounter3;
+var sound1 = new Audio("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/button1.wav"); 
+var sound2 = new Audio("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/button2.wav"); 
+var sound3 = new Audio("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/button3.wav"); 
+var sound4 = new Audio("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/button4.wav"); 
+
 
 // Mini game elements
 var miniGameRecorder;
@@ -67,8 +72,7 @@ var penisInHole = true;
 
 
 function init()
-{
-
+{   
     //Injecting SVG
     var svgInject = document.querySelectorAll("img.inject-me");
     SVGInjector(svgInject);
@@ -87,7 +91,7 @@ function init()
     btnIntroPlay = intro.querySelector("#btnPlay");
     btnIntroHowTo = intro.querySelector("#btnHow");
     btnIntroHighscore = intro.querySelector("#btnHigh");
-    
+
     // Listeners   
     btnIntroPlay.addEventListener("click", next_intro);
 }
@@ -97,6 +101,7 @@ function init()
 // Click for next screen functions
 function next_intro()
 {
+
     intro.className = "hidden";
     enter_name.className = "";
     enter_name.className = game_window_class;
@@ -150,8 +155,8 @@ function next_enter_name()
         lblDrag = quizRecorder.querySelector("#lblDrag");
         var btnBeforeDown = quizRecorder.querySelector("#groupBackPressed");
         var btnForwardDown = quizRecorder.querySelector("#groupForwardPressed");
-        
-        
+
+
 
         // Setting elements/vars
         lengthAllQuestions = allQuestions.length;
@@ -186,12 +191,41 @@ function pressEffectDown(el)
 {
     el.classList.toggle('hidden');
     clickedElement = el;
+    playRandomClickSound();
 }
 
 function pressEffectUp()
 {
     clickedElement.classList.toggle('hidden');
+    //sound2.play();
 }
+
+function playRandomClickSound()
+{
+    var i = Math.floor((Math.random() * 4) + 1);
+    console.log(i);
+    switch(i)
+    {
+        case 1:
+            playSoundEffect(sound1);
+        case 2:
+            playSoundEffect(sound2);
+        case 3:
+            playSoundEffect(sound3);
+        case 4:
+            playSoundEffect(sound4);
+    }
+}
+
+function playSoundEffect(sound)
+{
+    sound.play();
+    sound.onended = function()
+    {
+        sound.currentTime=0;
+    }
+}
+
 
 // Screen specific functions
 // Intro
@@ -315,11 +349,10 @@ function nextQuestion(isBefore)
 
 function startMiniGame()
 {
-    //TODO: when at question 15 show the minigame
-    minigame.className = "";
-    minigame.className = game_window_class;
+
+    minigame.classList.remove("hidden");
     //Mini game will be about quickly rewinging a cassette tape with a Bic pen > your quiz time keeps running
-    console.log("mini game");
+
     // Vars
     var iAmountTurned = 0;
     var miniGamecassette = minigame.querySelector("#miniGameCassette");
