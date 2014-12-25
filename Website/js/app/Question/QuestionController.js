@@ -8,15 +8,15 @@ var QuestionController = function($scope, $http)
     {       
         angular.forEach(response.data, function(value, key)
                         {
-            var q = new Question(value.Quest, value.Year, value.Cat.Cat);
+            var q = new Question(value.Quest, value.Year, value.Cat.Cat, value.ImgUrl);
             $scope.questions.push(q);
         }); 
-        
+        console.log($scope.questions);
     };
     var onError = function(response)
     {
         console.log(response);
     };
-    $http.get("http://then-and-now.azurewebsites.net/api/v1/question").then(onQuestionGet, onError);    
+    $http.get("http://80squiz.azurewebsites.net/api/v1/question").then(onQuestionGet, onError);    
 }
 

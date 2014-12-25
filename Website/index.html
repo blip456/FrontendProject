@@ -43,11 +43,37 @@
                     <ul id="questions">
                         <li ng-repeat="q in questions">
                             <h2 class="category">{{q.Category}}</h2>
-                            <p>{{q.Quest}}</p>
-                        </li>
-                    </ul>
+                            <div ng-if="q.Category == 'Movies'">
+                                <p>When was the movie {{q.Quest}} released?</p>                                
+                            </div>
+                            <div ng-if="q.Category == 'Books'">
+                                <p>When was {{q.Quest}} published?</p>                                
+                            </div>
+                            <div ng-if="q.Category == 'TV Shows'">
+                                <p>When did {{q.Quest}} first aired on TV?</p>                                
+                            </div>
+                            <div ng-if="q.Category == 'Music'">
+                                <p>When was {{q.Quest}} first played on the radio?</p>                                
+                            </div>
+                            <div ng-if="q.Category == 'Inventions'">
+                                <p>When was {{q.Quest}} invented?</p>                                
+                            </div>
+                            <div ng-if="q.Category == 'Fashion'">
+                                <p>When was {{q.Quest}} fashionable?</p>                                
+                            </div>
+                            <div ng-if="q.Category == 'Games'">
+                                <p>When was {{q.Quest}} released?</p>                                                               
+                            </div>
+                            <div ng-if="q.Category == 'Game Consoles'">
+                                <p>When was the {{q.Quest}} released?</p>                                
+                            </div> 
+                            <img ng-src="{{q.ImgURL}}" class="quizImages"/>  
+                            <p>Press &#171; if you think before or &#187; if you think after 1980</p>                                                  
+                        </li>                                          
+                    </ul>  
+                    <br style="clear: both" />                                                         
                 </div>
-                
+
                 <div id="mini_game" class="hidden overlay">
                     <img src="MiniGameCassette.svg" class="inject-me" id="miniGameCassette"/>
                 </div>

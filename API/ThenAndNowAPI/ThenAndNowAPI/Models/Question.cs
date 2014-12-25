@@ -55,6 +55,15 @@ namespace ThenAndNowAPI.Models
             get { return _isCorrect; }
             set { _isCorrect = value; }
         }
+
+        private string _imgUrl;
+
+        public string ImgUrl
+        {
+            get { return _imgUrl; }
+            set { _imgUrl = value; }
+        }
+        
         #endregion
     }
 }

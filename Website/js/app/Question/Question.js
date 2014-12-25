@@ -10,11 +10,12 @@
 */
 
 //Contstructor functie (moet met hoofdletter beginnen)
-function Question(quest, year, cat)
+function Question(quest, year, cat, imgURL)
 {
     this.quest = quest;
     this.year = year;   
     this.cat = cat;
+    this.imgURL = imgURL;
 }
 
 //Properties instellen
@@ -27,7 +28,10 @@ Question.prototype = {
     set Year(v){this.year = v;},
     
     get Category(){return this.cat},
-    set Category(v){this.cat = v}
+    set Category(v){this.cat = v},
+    
+    get ImgURL(){return this.imgURL},
+    set ImgURL(v){this.imgURL = v}
 
     //Methodes
 }

@@ -19,6 +19,10 @@ namespace ThenAndNowAPI.Models._DAL
                 quest.Quest = Convert.ToString(reader["questions_question"]);
                 quest.Year = Convert.ToInt32(reader["questions_year"]);
                 quest.Cat = CategoryRepository.GetCategoryByID(Convert.ToInt32(reader["questions_cat"]));
+              
+                    quest.ImgUrl = Convert.ToString(reader["questions_imageURL"]);
+               
+                
                 //quest.Price = Convert.ToDouble(reader["questions_price"]);
                 return quest;
             }

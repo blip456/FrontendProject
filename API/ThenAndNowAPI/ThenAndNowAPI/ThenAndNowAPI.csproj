@@ -205,6 +205,11 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <None Include="Properties\PublishProfiles\80squiz.pubxml" />
+    <None Include="Properties\PublishProfiles\ftp.pubxml" />
+    <None Include="Properties\PublishProfiles\Testje.pubxml" />
+    <None Include="Properties\PublishProfiles\then-and-now - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\then-and-now - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\then-and-now.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -82,23 +82,37 @@ body {
                 border: solid $blue 32px;
                 box-sizing: border-box;                
                 min-height: 512px;
-                margin: 32px;
+                padding: 32px;
 
                 .country_flag
                 {
                     height: 32px;
                 }
 
-                h1{
+                h1, h2{
                     font-family: "VCR OSD Mono", Arial, Helvetica, sans-serif;
                     color: black;
-                    margin: 16px;
-                    padding: 16px;
+                    margin: 0px;
+                    padding: 0px;
+                    margin-bottom: 16px;
+                    padding-bottom: 16px;
+                }
+                
+                h2
+                {
+                    text-align: center;
+                    margin: 0px;
+                    padding: 0px;
                 }
 
                 h1:after
                 {
                     content: " █";
+                }
+
+                p
+                {
+                    font-family: 'Arial', 'Helvetica', sans-serif;
                 }
 
                 #txtName
@@ -185,25 +199,17 @@ body {
                     color: white;
                 }
 
-                #Layer_1
-                {
-                    Rect
-                    {
-                        fill:#ffff00 !important;
-                    }
-                }
-
                 .recorder
                 {
                     width: 50%;
                     margin: 0 auto;
                     display: block;
                 }
-                
+
                 #Recorder
                 {
-                    width: 25%;
-                    margin-left: 40px;
+                    width: 35%;
+                    float:left;
                 }
 
                 .recoderControlls
@@ -221,6 +227,30 @@ body {
                     margin: 0 auto;
                     text-transform: uppercase;
                 }
+
+                #questions
+                {
+                    float:right;
+                    width: 50%;
+                    margin-right: 40px;
+                    margin: 0px;
+                    padding: 0px;
+                    
+                    p
+                    {
+                        text-align: center;
+                        font-size: 18px;
+                    }
+                }
+
+                .quizImages
+                {
+                    max-width: 256px;
+                    max-height: 328px;
+                    overflow: hidden;
+                    margin: 16px auto;
+                    display: block;
+                }
             }
 
             .overlay
@@ -234,7 +264,7 @@ body {
                 padding: 15%;
                 box-sizing: border-box;
             }
-            
+
             #minigameText
             {
                 font-family: 'Note this';
@@ -249,6 +279,12 @@ body {
             {
                 display: block;
             }
+
+            .clearfix
+            {
+                clear: both;
+            }
+
         }
 
     }
