@@ -69,6 +69,7 @@ var isBlink = false;
 var arrAnswers = [];
 // TODO: change this to false and set value true in the ondrop of Bic
 var penisInHole = true;
+var isScorePushed = false;
 
 
 function init()
@@ -168,9 +169,9 @@ function next_enter_name()
         btnAfter.setAttribute("class", "hover");
 
         // Listener
-        btnBefore.addEventListener("mousedown", function(){nextQuestion(1); pressEffectDown(this)});        
+        btnBefore.addEventListener("mousedown", function(){nextQuestion(true); pressEffectDown(this)});        
         btnBeforeDown.addEventListener("mouseup", function(){pressEffectUp();});
-        btnAfter.addEventListener("mousedown", function(){nextQuestion(0); pressEffectDown(this)});
+        btnAfter.addEventListener("mousedown", function(){nextQuestion(false); pressEffectDown(this)});
         btnForwardDown.addEventListener("mouseup", function(){pressEffectUp();});
 
         // Varia
@@ -202,8 +203,7 @@ function pressEffectUp()
 
 function playRandomClickSound()
 {
-    var i = Math.floor((Math.random() * 4) + 1);
-    console.log(i);
+    var i = Math.floor((Math.random() * 4) + 1);  
     switch(i)
     {
         case 1:
@@ -336,21 +336,28 @@ function nextQuestion(isBefore)
         showNextQuestion();
 
         // Check if 15 and start minigame
-        if(iQuestion == 14)
-            startMiniGame();
+        //if(iQuestion == 14)
+          //  startMiniGame();
     }
     // End the game
     else if(iQuestion == 29)
     {
+        arrAnswers.push(isBefore);
         // Stop the timer
         window.clearInterval(blinkTimer);
+        if(!isScorePushed)
+        {            
+            AddScore();
+            isScorePushed = true;
+        }
     }
 }
 
 function startMiniGame()
 {
+    pressEffectUp();
 
-    minigame.classList.remove("hidden");
+    minigame.classList.remove("visibility");
     //Mini game will be about quickly rewinging a cassette tape with a Bic pen > your quiz time keeps running
 
     // Vars
@@ -438,5 +445,17 @@ function controlTimer()
         iSec += 1;                                
         txtLCD.innerHTML = preMin+iMin+":"+preSec+iSec;
     }
+}
+
+function AddScore()
+{
+    $.ajax({
+        url: "http://localhost:49930/api/v1/highscore",
+        type: "Post",
+        data: JSON.stringify(["yoran", "20", "Belgium", JSON.stringify(arrAnswers), JSON.stringify(arrQuestionIDs)]),
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) { },
+        error: function () { alert('error'); }
+    });
 }
 

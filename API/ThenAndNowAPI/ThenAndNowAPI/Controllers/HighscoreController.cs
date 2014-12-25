@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using ThenAndNowAPI.Models;
 using ThenAndNowAPI.Models._DAL;
 
@@ -18,7 +19,7 @@ namespace ThenAndNowAPI.Controllers
             List<Highscore> lst = HighscoreRepository.GetHighscores();
             return lst;
         }
-        
+
         // GET: api/Highscore/5
         public string Get(int id)
         {
@@ -27,15 +28,33 @@ namespace ThenAndNowAPI.Controllers
 
         // inserting a new highscore
         //GET: api/Highscore?naam=yoran
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public void Get(String name, String location, String score)
         {
             Highscore high = new Highscore { Name = name, Score = Convert.ToInt32(score), Location = location };
-            HighscoreRepository.AddHighscore(high);
+            //HighscoreRepository.AddHighscore(high);
         }
 
         // POST: api/Highscore
-        public void Post([FromBody]string value)
+
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
+        public void Post(List<String> values)
         {
+            Highscore high = new Highscore { Name = values[0], Score = Convert.ToInt32(values[1]), Location = values[2] };
+            List<String> arrAnswers = new List<String>();
+            List<String> arrIDs = new List<string>();
+
+            String answ = values[3].Replace("[", "");
+            answ = answ.Replace("]", "");
+            String ids = values[4].Replace("[", "");
+            ids = ids.Replace("]", "");
+
+            arrAnswers = answ.Split(',').ToList();
+            arrIDs = ids.Split(',').ToList();
+
+            high.Score = Util.Util.CalculateScore(arrAnswers, arrIDs);
+           
+            HighscoreRepository.AddHighscore(high);
         }
 
 

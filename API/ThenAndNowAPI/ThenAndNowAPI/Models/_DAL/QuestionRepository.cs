@@ -74,6 +74,26 @@ namespace ThenAndNowAPI.Models._DAL
 
             return lstQuest;
         }
+
+        // Get question by id
+        public static Question GetQuestionById(int id)
+        {
+            Question quest = new Question();
+
+            string sql = "SELECT * FROM dbo.questions WHERE questions_id = @id;";
+
+            DbParameter par1 = Database.AddParameter("@id", id);
+
+            DbDataReader reader = Database.GetData(sql, par1);
+            while (reader.Read())
+            {
+                quest = CreateQuestion(reader);
+            }
+            if (reader != null)
+                reader.Close();
+
+            return quest;
+        }
         #endregion
     }
 }

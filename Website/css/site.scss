@@ -246,8 +246,7 @@ body {
                 .quizImages
                 {
                     max-width: 256px;
-                    max-height: 328px;
-                    overflow: hidden;
+                    max-height: 256px;
                     margin: 16px auto;
                     display: block;
                 }
@@ -268,6 +267,11 @@ body {
             #minigameText
             {
                 font-family: 'Note this';
+            }
+            
+            .visibility
+            {
+                visibility: hidden;
             }
 
             .hidden

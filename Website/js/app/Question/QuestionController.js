@@ -1,4 +1,4 @@
-
+var arrQuestionIDs = [];
 var QuestionController = function($scope, $http)
 {
     // Verbinding met view
@@ -8,7 +8,8 @@ var QuestionController = function($scope, $http)
     {       
         angular.forEach(response.data, function(value, key)
                         {
-            var q = new Question(value.Quest, value.Year, value.Cat.Cat, value.ImgUrl);
+            var q = new Question(value.Quest, value.ID, value.Cat.Cat, value.ImgUrl);
+            arrQuestionIDs.push(value.ID);
             $scope.questions.push(q);
         }); 
         console.log($scope.questions);
