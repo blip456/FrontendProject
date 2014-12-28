@@ -113,6 +113,8 @@ function init()
     // Listeners   
     btnIntroPlay.addEventListener("click", next_intro);
     btnIntroHowTo.addEventListener("click", function(){window.location = ("howto.html");})
+    btnIntroHighscore.addEventListener("click", function(){window.location = ("highscore.html");})
+
 
     getLocation();
 }
@@ -373,7 +375,8 @@ function nextQuestion(isBefore)
         if(!isScorePushed)
         {            
             AddScore();            
-            GetAnswers();            
+            GetAnswers();
+            
             isScorePushed = true;
         }
     }
@@ -429,16 +432,12 @@ function ShowResult()
     result.classList.remove("hidden");
     quiz.classList.add("hidden");
 
-    console.log(arrCorrectAnswers);
-    console.log(arrAnswers);
     var stringbuilder = "";
     var correct = "";
     var correctAnswers = result.querySelector("#answers");
     var l = arrCorrectAnswers.length;
     for(i=0; i < l; i++)
     {      
-        console.log(parseInt(arrCorrectAnswers[i].Year));
-        console.log(typeof(arrCorrectAnswers[i].Year));
         correct = "";
         if(arrAnswers[i] == true && parseInt(arrCorrectAnswers[i].Year) < parseInt(80) ||  arrAnswers[i] == false && parseInt(arrCorrectAnswers[i].Year) >= parseInt(80))   
             correct = "<span class='correct'> (Correct)</span>";
@@ -447,23 +446,25 @@ function ShowResult()
 
 
         if(arrCorrectAnswers[i].Cat.Cat == "Movies")            
-            stringbuilder += "<li>Q: When was the movie " + arrCorrectAnswers[i].Quest +" released?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li>" ;
-        if(arrCorrectAnswers[i].Cat.Cat == "Books")            
-            stringbuilder += "<li>Q: When was the book " + arrCorrectAnswers[i].Quest +" published?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li>" ;
-        if(arrCorrectAnswers[i].Cat.Cat == "TV Shows")            
-            stringbuilder += "<li>Q: When did " + arrCorrectAnswers[i].Quest +" first aired on TV?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li>" ;
-        if(arrCorrectAnswers[i].Cat.Cat == "Music")            
-            stringbuilder += "<li>Q: When was " + arrCorrectAnswers[i].Quest +" first played on the radio?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li>" ;
-        if(arrCorrectAnswers[i].Cat.Cat == "Movies")            
-            stringbuilder += "<li>Q: When was the Inventions " + arrCorrectAnswers[i].Quest +" released?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li>" ;
-        if(arrCorrectAnswers[i].Cat.Cat == "Movies")            
-            stringbuilder += "<li>Q: When was " + arrCorrectAnswers[i].Quest +" invented?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li>" ;
-        if(arrCorrectAnswers[i].Cat.Cat == "Fashion")            
-            stringbuilder += "<li>Q: When was " + arrCorrectAnswers[i].Quest +" fashionable?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li>" ;
-        if(arrCorrectAnswers[i].Cat.Cat == "Game")            
-            stringbuilder += "<li>Q: When was the game " + arrCorrectAnswers[i].Quest +" released?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li>" ;
-        if(arrCorrectAnswers[i].Cat.Cat == "Game Consoles")            
-            stringbuilder += "<li>Q: When was the " + arrCorrectAnswers[i].Quest +" released?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li>" ;
+            stringbuilder += "<li>Q: When was the movie " + arrCorrectAnswers[i].Quest +" released?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li><li></li>" ;
+        else if(arrCorrectAnswers[i].Cat.Cat == "Books")            
+            stringbuilder += "<li>Q: When was the book " + arrCorrectAnswers[i].Quest +" published?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li><li></li>" ;
+        else if(arrCorrectAnswers[i].Cat.Cat == "TV Shows")            
+            stringbuilder += "<li>Q: When did " + arrCorrectAnswers[i].Quest +" first aired on TV?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li><li></li>" ;
+        else if(arrCorrectAnswers[i].Cat.Cat == "Music")            
+            stringbuilder += "<li>Q: When was " + arrCorrectAnswers[i].Quest +" first played on the radio?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li><li></li>" ;
+        else if(arrCorrectAnswers[i].Cat.Cat == "Inventions")            
+            stringbuilder += "<li>Q: When was the Inventions " + arrCorrectAnswers[i].Quest +" released?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li><li></li>" ;
+        else if(arrCorrectAnswers[i].Cat.Cat == "Movies")            
+            stringbuilder += "<li>Q: When was " + arrCorrectAnswers[i].Quest +" invented?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li><li></li>" ;
+        else if(arrCorrectAnswers[i].Cat.Cat == "Fashion")            
+            stringbuilder += "<li>Q: When was " + arrCorrectAnswers[i].Quest +" fashionable?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li><li></li>" ;
+        else if(arrCorrectAnswers[i].Cat.Cat == "Games")            
+            stringbuilder += "<li>Q: When was the game " + arrCorrectAnswers[i].Quest +" released?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li><li></li>" ;
+        else if(arrCorrectAnswers[i].Cat.Cat == "Game Consoles")            
+            stringbuilder += "<li>Q: When was the " + arrCorrectAnswers[i].Quest +" released?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li><li></li>" ;
+        else
+            stringbuilder += "<li>Q: Foutje precies " + arrCorrectAnswers[i].Quest +" released?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li><li></li>" ;
     }
     correctAnswers.innerHTML = stringbuilder;
 }
@@ -525,14 +526,13 @@ function AddScore()
         type: "Post",
         data: JSON.stringify([player_name, iTime, city + ", "+ country, JSON.stringify(arrAnswers), JSON.stringify(arrQuestionIDs)]),
         contentType: 'application/json; charset=utf-8',
-        success: function (data) { },
+        success: function (data) { GetScore();},
         error: function () { alert('error'); }
     });
 }
 
 function GetAnswers()
 {
-    console.log("http://80squiz.azurewebsites.net/api/v1/question/"+JSON.stringify(arrQuestionIDs));
     $.ajax({
         url: "http://80squiz.azurewebsites.net/api/v1/question/?values="+JSON.stringify(arrQuestionIDs),
         type: "GET",
@@ -540,6 +540,24 @@ function GetAnswers()
         success: function (data) { arrCorrectAnswers = data; ShowResult(); },
         error: function () { alert('error'); }
     });
+}
+
+function GetScore()
+{    
+    $.ajax({
+        url: "http://80squiz.azurewebsites.net/api/v1/highscore?latest=true",
+        type: "GET",
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) { EditScore(data); },
+        error: function () { alert('error'); }
+    });
+}
+
+function EditScore(data)
+{
+    var sc = data.Score;
+    var scoreboard = result.querySelector("#scoreboard");
+    scoreboard.innerHTML = ""+sc;
 }
 
 function CheckLocalStorage()

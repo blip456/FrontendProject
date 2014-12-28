@@ -62,6 +62,19 @@ namespace ThenAndNowAPI.Models._DAL
             int i = Database.ModifyData(sql, par1, par2, par3);
         }
 
+        public static Highscore GetLatestHighscore()
+        {
+            Highscore high = new Highscore();
+            DbDataReader reader = Database.GetData("SELECT TOP 1 * FROM dbo.highscores ORDER BY highscores_id DESC;");
+            while (reader.Read())
+            {
+                high = CreateHighscore(reader);
+            }
+            if (reader != null)
+                reader.Close();
+            return high;
+        }
+
         #endregion
     }
 }

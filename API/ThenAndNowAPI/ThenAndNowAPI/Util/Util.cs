@@ -25,8 +25,7 @@ namespace ThenAndNowAPI.Util
 
                 i++;
             }
-
-            return score-iTimeInSeconds;
+            return score - (iTimeInSeconds / 10);
         }
     }
 }

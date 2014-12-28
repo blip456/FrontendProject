@@ -30,11 +30,12 @@ namespace ThenAndNowAPI.Controllers
         // inserting a new highscore
         //GET: api/Highscore?naam=yoran
         [EnableCors(origins: "*", headers: "*", methods: "*")]
-        public void Get(String name, String location, String score)
+        public Highscore Get(String latest)
         {
-            Highscore high = new Highscore { Name = name, Score = Convert.ToInt32(score), Location = location };
-            //HighscoreRepository.AddHighscore(high);
+            Highscore high = HighscoreRepository.GetLatestHighscore();
+            return high;
         }
+
 
         // POST: api/Highscore
 
@@ -58,8 +59,8 @@ namespace ThenAndNowAPI.Controllers
             if(name.Equals(""))
                 name = "Anonymous";
 
-            Highscore high = new Highscore { Name = name, Score = Convert.ToInt32(values[1]), Location = values[2] };
-            //Highscore high = new Highscore { Name = values[0], Score = Util.Util.CalculateScore(arrAnswers, arrIDs, iTime), Location = values[2] };
+            //Highscore high = new Highscore { Name = name, Score = Convert.ToInt32(values[1]), Location = values[2] };
+            Highscore high = new Highscore { Name = name, Score = Util.Util.CalculateScore(arrAnswers, arrIDs, iTime), Location = values[2] };
             HighscoreRepository.AddHighscore(high);
         }
 
