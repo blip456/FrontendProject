@@ -1,12 +1,25 @@
 document.addEventListener("DOMContentLoaded", init);
-//var appCache = window.applicationCache;
-//appCache.update(); // Attempt to update the user's cache.
+/*var appCache = window.applicationCache;
+appCache.update(); // Attempt to update the user's cache.
 
-
-/*
 if (appCache.status == window.applicationCache.UPDATEREADY) {
     appCache.swapCache();  // The fetch was successful, swap in the new cache.
 }*/
+
+// Browser checking
+
+var isIE = false;
+if ((navigator.appVersion.indexOf("MSIE 8.") != -1) || (navigator.appVersion.indexOf("MSIE 7.") != -1))
+{
+    isIE = true;
+}    
+
+// Mobile checking
+var isMobile = false;
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
+{
+    isMobile = true;
+}
 
 // Main variables
 var game;
@@ -142,12 +155,13 @@ function next_intro()
     txtLCD = nameRecorder.querySelector("#txtLCD");
 
     // Setting elements/vars
-    nameRecorder = enter_name.querySelector("#startRecorder");
     nameRecorder.setAttribute("ondrop", "drop(event)");
     nameRecorder.setAttribute("ondragover", "allowDrop(event)");
     cassettePlaceholder.setAttribute("class", "hidden");
     txtLCD.setAttribute("class", "lcd_display");
     btnEnterNameNext.classList.add("hover");
+    inputName.focus();
+    
 
     // Listener    
     btnEnterNameNext.addEventListener("mousedown", function(){pressEffectDown(this);});
@@ -376,7 +390,7 @@ function nextQuestion(isBefore)
         {            
             AddScore();            
             GetAnswers();
-            
+
             isScorePushed = true;
         }
     }
