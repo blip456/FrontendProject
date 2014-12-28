@@ -2,9 +2,16 @@
 html {
   min-height: 100%;
   position: relative;
-  color: black; }
+  color: black;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: 'Arial', 'Helvetica', sans-serif; }
 
-/* line 19, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+/* line 26, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
 body {
   background-color: #111;
   background-image: linear-gradient(30deg, #333 12%, transparent 12.5%, transparent 87%, #333 87.5%, #333), linear-gradient(150deg, #333 12%, transparent 12.5%, transparent 87%, #333 87.5%, #333), linear-gradient(30deg, #333 12%, transparent 12.5%, transparent 87%, #333 87.5%, #333), linear-gradient(150deg, #333 12%, transparent 12.5%, transparent 87%, #333 87.5%, #333), linear-gradient(60deg, #222 25%, transparent 25.5%, transparent 75%, #222 75%, #222), linear-gradient(60deg, #222 25%, transparent 25.5%, transparent 75%, #222 75%, #222);
@@ -13,7 +20,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100%; }
-  /* line 28, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+  /* line 35, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
   body #banner {
     background: #070f4f;
     width: 100%;
@@ -22,49 +29,49 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center; }
-  /* line 38, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+  /* line 45, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
   body footer {
     width: 100%;
     height: 40px;
     background: #070f4f; }
-  /* line 45, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+  /* line 52, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
   body .rainbow {
     position: absolute;
     width: 80px;
     height: 100%;
     z-index: -1; }
-  /* line 52, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+  /* line 59, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
   body .rainbow_left {
     left: 80px;
     background-image: linear-gradient(to right, #05AFF2, #05AFF2 25%, #BFF205 25%, #BFF205 50%, #ffff00 50%, #ffff00 75%, #F2358D 75%, #F2358D 100%); }
-  /* line 57, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+  /* line 64, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
   body .rainbow_right {
     right: 80px;
     background-image: linear-gradient(to left, #05AFF2, #05AFF2 25%, #BFF205 25%, #BFF205 50%, #ffff00 50%, #ffff00 75%, #F2358D 75%, #F2358D 100%); }
-  /* line 63, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+  /* line 70, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
   body #content {
     max-width: 960px;
     height: auto;
     margin: 0 auto; }
-    /* line 68, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+    /* line 75, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
     body #content nav {
       margin: 0 auto;
       width: 200px; }
-    /* line 74, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+    /* line 81, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
     body #content #game {
       width: 100%;
       min-height: 512px; }
-      /* line 79, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+      /* line 86, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
       body #content #game .game_window {
         background: white;
         border: solid #05AFF2 32px;
         box-sizing: border-box;
         min-height: 512px;
         padding: 32px; }
-        /* line 87, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        /* line 94, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window .country_flag {
           height: 32px; }
-        /* line 92, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        /* line 99, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window h1, body #content #game .game_window h2 {
           font-family: "VCR OSD Mono", Arial, Helvetica, sans-serif;
           color: black;
@@ -72,18 +79,36 @@ body {
           padding: 0px;
           margin-bottom: 16px;
           padding-bottom: 16px; }
-        /* line 101, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        /* line 108, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window h2 {
           text-align: center;
           margin: 0px;
           padding: 0px; }
-        /* line 108, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        /* line 115, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window h1:after {
           content: " █"; }
-        /* line 113, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        /* line 120, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window p {
           font-family: 'Arial', 'Helvetica', sans-serif; }
-        /* line 118, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        /* line 125, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        body #content #game .game_window .arrow {
+          max-height: 512px;
+          width: 128px;
+          margin: 0px;
+          padding: 0px;
+          position: absolute;
+          left: 64%;
+          top: 512px;
+          margin: 0px;
+          padding: 0px;
+          transition: all 100ms; }
+        /* line 139, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        body #content #game .game_window .wrong {
+          color: red; }
+        /* line 144, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        body #content #game .game_window .correct {
+          color: green; }
+        /* line 151, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window #txtName {
           background: none;
           background: url("../Cassette.svg");
@@ -98,7 +123,7 @@ body {
           margin: 0 auto;
           margin-bottom: 64px;
           display: block; }
-        /* line 135, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        /* line 168, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window .btn_big {
           font-family: "Note This", Arial, Helvetica, sans-serif;
           font-size: 24px;
@@ -114,7 +139,7 @@ body {
           margin: 32px auto;
           width: 177px;
           height: 110px; }
-        /* line 153, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        /* line 186, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window .btn_big:hover, body #content #game .game_window .btn_big:focus {
           background: url("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/btn_hover.png");
           -webkit-transition: all 0.2s ease-out;
@@ -124,67 +149,67 @@ body {
           transition: all 0.2s ease-out;
           outline: none;
           cursor: pointer; }
-        /* line 165, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        /* line 198, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window .txt_big {
           text-align: left;
           color: #6666cc;
           font-family: "Note This", Arial, Helvetica, sans-serif;
           font-size: 28px;
           text-transform: uppercase; }
-        /* line 175, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        /* line 208, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window .lcd_display {
           font-family: 'LCD'; }
-        /* line 180, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        /* line 213, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window .hover:hover {
           cursor: pointer; }
-        /* line 185, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        /* line 218, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window .drag:hover {
           cursor: -webkit-zoom-grab;
           cursor: url(https://www.google.com/intl/en_ALL/mapfiles/openhand.cur), auto; }
-        /* line 191, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        /* line 224, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window .txt_big::selection {
           background: black;
           color: white; }
-        /* line 196, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        /* line 229, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window .txt_big::-moz-selection {
           background: black;
           color: white; }
-        /* line 202, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        /* line 235, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window .recorder {
           width: 50%;
           margin: 0 auto;
           display: block; }
-        /* line 209, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        /* line 242, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window #Recorder {
           width: 35%;
           float: left; }
-        /* line 217, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        /* line 250, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window .recoderControlls #RecordingLight {
           fill: #15040c; }
-        /* line 223, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        /* line 256, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window .cassetteName {
           fill: #6666cc;
           font-family: "Note this";
           margin: 0 auto;
           text-transform: uppercase; }
-        /* line 231, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        /* line 264, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window #questions {
           float: right;
           width: 50%;
           margin-right: 40px;
           margin: 0px;
           padding: 0px; }
-          /* line 239, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+          /* line 272, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
           body #content #game .game_window #questions p {
             text-align: center;
             font-size: 18px; }
-        /* line 246, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+        /* line 279, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
         body #content #game .game_window .quizImages {
           max-width: 256px;
           max-height: 256px;
           margin: 16px auto;
           display: block; }
-      /* line 255, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+      /* line 288, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
       body #content #game .overlay {
         position: absolute;
         top: 0;
@@ -194,19 +219,20 @@ body {
         background: rgba(0, 0, 0, 0.5);
         padding: 15%;
         box-sizing: border-box; }
-      /* line 267, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+      /* line 300, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
       body #content #game #minigameText {
         font-family: 'Note this'; }
-      /* line 272, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+      /* line 305, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
       body #content #game .visibility {
+        opacity: 0;
         visibility: hidden; }
-      /* line 277, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+      /* line 311, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
       body #content #game .hidden {
         display: none; }
-      /* line 282, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+      /* line 316, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
       body #content #game .visible {
         display: block; }
-      /* line 287, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
+      /* line 321, C:/Users/Yoran.Yoran/Dropbox/School/_Semester 5/Frontend Webdevelopment/_Project/_Site/FrontendProject/Website/css/site.scss */
       body #content #game .clearfix {
         clear: both; }
 

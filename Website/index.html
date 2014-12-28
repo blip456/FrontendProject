@@ -32,7 +32,7 @@
                     <input type="text" placeholder="Name" name="txtName" id="txtName" class="txt_big drag" maxlength="16" draggable="true"
                            ondragstart="drag(event)"/>
 
-
+                    <img src="arrow.svg" class="arrow" id="helparrow"/>
                     <img src="Recorder.svg" class="inject-me recorder" id="startRecorder" ondrop="drop(event)" ondragover="allowDrop(event)"/>
                     <!--                    <input type="button" value="Next" name="btnEnterNameNext" class="btn_big"/>-->
                 </div>                                
@@ -47,7 +47,7 @@
                                 <p>When was the movie {{q.Quest}} released?</p>                                
                             </div>
                             <div ng-if="q.Category == 'Books'">
-                                <p>When was {{q.Quest}} published?</p>                                
+                                <p>When was the book {{q.Quest}} published?</p>                                
                             </div>
                             <div ng-if="q.Category == 'TV Shows'">
                                 <p>When did {{q.Quest}} first aired on TV?</p>                                
@@ -62,7 +62,7 @@
                                 <p>When was {{q.Quest}} fashionable?</p>                                
                             </div>
                             <div ng-if="q.Category == 'Games'">
-                                <p>When was {{q.Quest}} released?</p>                                                               
+                                <p>When was the game {{q.Quest}} released?</p>                                                               
                             </div>
                             <div ng-if="q.Category == 'Game Consoles'">
                                 <p>When was the {{q.Quest}} released?</p>                                
@@ -78,9 +78,13 @@
                     <img src="MiniGameCassette.svg" class="inject-me" id="miniGameCassette"/>
                 </div>
 
-                <form id="highscore" class="hidden game_window">
-                    <h1>The highscore</h1>
-                </form>
+                <div id="result" class="hidden game_window">
+                    <h1>Result</h1>
+                    <h2>Your score: </h2>
+                    <ul id="answers">
+                        
+                    </ul>
+                </div>
             </div>
 
         </div>
@@ -97,7 +101,6 @@
         <script src="js/app/Question/Question.js"></script>
         <script src="js/app/Question/QuestionController.js"></script>
         <script src="js/svg-injector.js"></script>
-        <!--<script src="js/site.js"></script>-->
         <script src="js/main.js"></script>
         <script src="js/snowstorm.js"></script>
     </body>

@@ -14,6 +14,7 @@ namespace ThenAndNowAPI.Controllers
     {
         // getting all the highscores
         // GET: api/Highscore
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public IEnumerable<Highscore> Get()
         {
             List<Highscore> lst = HighscoreRepository.GetHighscores();
@@ -39,8 +40,7 @@ namespace ThenAndNowAPI.Controllers
 
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         public void Post(List<String> values)
-        {
-            Highscore high = new Highscore { Name = values[0], Score = Convert.ToInt32(values[1]), Location = values[2] };
+        {            
             List<String> arrAnswers = new List<String>();
             List<String> arrIDs = new List<string>();
 
@@ -52,8 +52,14 @@ namespace ThenAndNowAPI.Controllers
             arrAnswers = answ.Split(',').ToList();
             arrIDs = ids.Split(',').ToList();
 
-            high.Score = Util.Util.CalculateScore(arrAnswers, arrIDs);
-           
+            int iTime = Convert.ToInt32(values[1]);
+
+            string name = values[0];
+            if(name.Equals(""))
+                name = "Anonymous";
+
+            Highscore high = new Highscore { Name = name, Score = Convert.ToInt32(values[1]), Location = values[2] };
+            //Highscore high = new Highscore { Name = values[0], Score = Util.Util.CalculateScore(arrAnswers, arrIDs, iTime), Location = values[2] };
             HighscoreRepository.AddHighscore(high);
         }
 

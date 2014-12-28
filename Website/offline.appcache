@@ -1,0 +1,22 @@
+CACHE MANIFEST
+index.html
+css/site.css
+js/main.js
+js/angular/angular.js
+js/jquery-2.1.1.min.js
+js/app/Question/Question.js
+js/app/Question/QuestionController.js
+js/svg-injector.js
+js/snowstorm.js
+MiniGameCassette.svg
+Recorder.svg
+https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/Banner.png
+https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/btn.png
+https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/button1.wav
+https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/button2.wav
+https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/button3.wav
+https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/button4.wav
+https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/btn_hover.png
+
+NETWORK:
+*

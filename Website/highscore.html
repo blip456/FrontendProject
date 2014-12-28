@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>The Big 80s Quiz</title>
+        <link href="css/site.css" rel="stylesheet" />
+    </head>
+
+    <body ng-app>
+        <div class="rainbow rainbow_left"></div>
+        <div class="rainbow rainbow_right"></div>
+        <div id="banner">
+            <div id="logo"></div>
+
+        </div>
+
+        <div id="content">
+            <div id="game" ng-controller="HighscoreController">
+                <div class="game_window">
+                    <h1>Highscores</h1>                
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Score</th> 
+                            <th>Date</th>
+                            <th>Location</th>
+                        </tr>
+                        <tr ng-repeat="s in highscores" >
+                            <td>{{s.Name}}</td>
+                            <td>{{s.Score}}</td> 
+                            <td>{{s.Date}}</td>
+                            <td>{{s.Location}}</td>
+                        </tr>
+                    </table>                                                         
+                </div>
+            </div>
+
+            <footer>
+                <p>&copy; <a href="http://www.yoranbroodcooren.me">Yoran Broodcooren</a>
+                </p>
+            </footer>
+
+            <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
+            <script src="js/angular/angular.js"></script>
+            <script src="js/jquery-2.1.1.min.js"></script>
+            <script src="js/app/Higscore/Highscore.js"></script>
+            <script src="js/app/Higscore/HighscoreController.js"></script>
+            <script src="js/svg-injector.js"></script>
+            <script src="js/snowstorm.js"></script>
+            </body>
+
+        </html>

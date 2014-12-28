@@ -1,17 +1,26 @@
 document.addEventListener("DOMContentLoaded", init);
+//var appCache = window.applicationCache;
+//appCache.update(); // Attempt to update the user's cache.
+
+
+/*
+if (appCache.status == window.applicationCache.UPDATEREADY) {
+    appCache.swapCache();  // The fetch was successful, swap in the new cache.
+}*/
 
 // Main variables
 var game;
 var game_window_class = "game_window";
 var blinkTimer;
 var clickedElement;
+var isFromLocal = false;
 
 // Screen elements
 var intro;
 var enter_name;
 var quiz;
 var minigame;
-var hightscore;
+var result;
 
 // Intro elements
 var btnIntroPlay;
@@ -25,6 +34,7 @@ var state = "";
 var country = "";
 var country_code = "";
 var player_name = "";
+var arrow;
 
 // Enter name elements
 var inputName;
@@ -60,6 +70,7 @@ var miniGameRecorder;
 var iQuestion = 0;
 var iQCounterE = 1;
 var iQCounterT = 0;
+var iTime = 0;
 var iSec = 0;
 var iMin = 0;
 var preSec = "0";
@@ -67,6 +78,7 @@ var preMin = "0";
 var lengthAllQuestions;
 var isBlink = false;
 var arrAnswers = [];
+var arrCorrectAnswers = [];
 // TODO: change this to false and set value true in the ondrop of Bic
 var penisInHole = true;
 var isScorePushed = false;
@@ -74,6 +86,10 @@ var isScorePushed = false;
 
 function init()
 {   
+    // Check if offline > Check local storage for questions    
+    // Not offline? > check if there are questions in local storage else add 30 new questions
+    CheckLocalStorage();
+
     //Injecting SVG
     var svgInject = document.querySelectorAll("img.inject-me");
     SVGInjector(svgInject);
@@ -86,15 +102,19 @@ function init()
     enter_name = game.querySelector("#enter_name");
     minigame = game.querySelector("#mini_game");
     quiz = game.querySelector("#quiz");
+    result = game.querySelector("#result");
 
     // Getting elements
     // Intro
     btnIntroPlay = intro.querySelector("#btnPlay");
     btnIntroHowTo = intro.querySelector("#btnHow");
-    btnIntroHighscore = intro.querySelector("#btnHigh");
+    btnIntroHighscore = intro.querySelector("#btnHigh");    
 
     // Listeners   
     btnIntroPlay.addEventListener("click", next_intro);
+    btnIntroHowTo.addEventListener("click", function(){window.location = ("howto.html");})
+
+    getLocation();
 }
 
 // Functions
@@ -113,6 +133,7 @@ function next_intro()
     nameRecorder = enter_name.querySelector("#startRecorder");
     btnEnterNameNext = enter_name.querySelector("#groupPlay");
     var btnEnterNameNextDown = enter_name.querySelector("#groupPlayPressed");
+    arrow = enter_name.querySelector("#helparrow");
     cassettePlaceholder = nameRecorder.querySelector("#Cassette");
     cassettePlaceholderName = nameRecorder.querySelector("#yourNameCassette");
     lblDrag = nameRecorder.querySelector("#lblDrag");
@@ -281,6 +302,7 @@ function drag(ev)
 
 function drop(ev) 
 {    
+    arrow.classList.add("visibility");
     isNameInCassette = true;
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
@@ -292,6 +314,7 @@ function drop(ev)
     cassettePlaceholderName.setAttribute("class", "cassetteName");
     cassettePlaceholderName.innerHTML = player_name;
     lblDrag.setAttribute("class", "hidden");
+
 }
 
 
@@ -337,7 +360,7 @@ function nextQuestion(isBefore)
 
         // Check if 15 and start minigame
         //if(iQuestion == 14)
-          //  startMiniGame();
+        //startMiniGame();
     }
     // End the game
     else if(iQuestion == 29)
@@ -345,9 +368,12 @@ function nextQuestion(isBefore)
         arrAnswers.push(isBefore);
         // Stop the timer
         window.clearInterval(blinkTimer);
+        if(isFromLocal)        
+            localStorage.removeItem("storageQuestions");
         if(!isScorePushed)
         {            
-            AddScore();
+            AddScore();            
+            GetAnswers();            
             isScorePushed = true;
         }
     }
@@ -398,6 +424,50 @@ function startMiniGame()
     }
 }
 
+function ShowResult()
+{
+    result.classList.remove("hidden");
+    quiz.classList.add("hidden");
+
+    console.log(arrCorrectAnswers);
+    console.log(arrAnswers);
+    var stringbuilder = "";
+    var correct = "";
+    var correctAnswers = result.querySelector("#answers");
+    var l = arrCorrectAnswers.length;
+    for(i=0; i < l; i++)
+    {      
+        console.log(parseInt(arrCorrectAnswers[i].Year));
+        console.log(typeof(arrCorrectAnswers[i].Year));
+        correct = "";
+        if(arrAnswers[i] == true && parseInt(arrCorrectAnswers[i].Year) < parseInt(80) ||  arrAnswers[i] == false && parseInt(arrCorrectAnswers[i].Year) >= parseInt(80))   
+            correct = "<span class='correct'> (Correct)</span>";
+        else
+            correct = "<span class='wrong'> (Wrong)</span>";
+
+
+        if(arrCorrectAnswers[i].Cat.Cat == "Movies")            
+            stringbuilder += "<li>Q: When was the movie " + arrCorrectAnswers[i].Quest +" released?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li>" ;
+        if(arrCorrectAnswers[i].Cat.Cat == "Books")            
+            stringbuilder += "<li>Q: When was the book " + arrCorrectAnswers[i].Quest +" published?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li>" ;
+        if(arrCorrectAnswers[i].Cat.Cat == "TV Shows")            
+            stringbuilder += "<li>Q: When did " + arrCorrectAnswers[i].Quest +" first aired on TV?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li>" ;
+        if(arrCorrectAnswers[i].Cat.Cat == "Music")            
+            stringbuilder += "<li>Q: When was " + arrCorrectAnswers[i].Quest +" first played on the radio?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li>" ;
+        if(arrCorrectAnswers[i].Cat.Cat == "Movies")            
+            stringbuilder += "<li>Q: When was the Inventions " + arrCorrectAnswers[i].Quest +" released?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li>" ;
+        if(arrCorrectAnswers[i].Cat.Cat == "Movies")            
+            stringbuilder += "<li>Q: When was " + arrCorrectAnswers[i].Quest +" invented?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li>" ;
+        if(arrCorrectAnswers[i].Cat.Cat == "Fashion")            
+            stringbuilder += "<li>Q: When was " + arrCorrectAnswers[i].Quest +" fashionable?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li>" ;
+        if(arrCorrectAnswers[i].Cat.Cat == "Game")            
+            stringbuilder += "<li>Q: When was the game " + arrCorrectAnswers[i].Quest +" released?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li>" ;
+        if(arrCorrectAnswers[i].Cat.Cat == "Game Consoles")            
+            stringbuilder += "<li>Q: When was the " + arrCorrectAnswers[i].Quest +" released?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li>" ;
+    }
+    correctAnswers.innerHTML = stringbuilder;
+}
+
 function blinkRecLight()
 {
     if(isBlink)
@@ -415,9 +485,10 @@ function blinkRecLight()
 }
 
 function controlTimer()
-{
+{    
     if(isBlink)
     {
+        iTime ++;
         if(iSec == 59)
         {
             iMin +=1;
@@ -450,12 +521,41 @@ function controlTimer()
 function AddScore()
 {
     $.ajax({
-        url: "http://localhost:49930/api/v1/highscore",
+        url: "http://80squiz.azurewebsites.net/api/v1/highscore",
         type: "Post",
-        data: JSON.stringify(["yoran", "20", "Belgium", JSON.stringify(arrAnswers), JSON.stringify(arrQuestionIDs)]),
+        data: JSON.stringify([player_name, iTime, city + ", "+ country, JSON.stringify(arrAnswers), JSON.stringify(arrQuestionIDs)]),
         contentType: 'application/json; charset=utf-8',
         success: function (data) { },
         error: function () { alert('error'); }
     });
+}
+
+function GetAnswers()
+{
+    console.log("http://80squiz.azurewebsites.net/api/v1/question/"+JSON.stringify(arrQuestionIDs));
+    $.ajax({
+        url: "http://80squiz.azurewebsites.net/api/v1/question/?values="+JSON.stringify(arrQuestionIDs),
+        type: "GET",
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) { arrCorrectAnswers = data; ShowResult(); },
+        error: function () { alert('error'); }
+    });
+}
+
+function CheckLocalStorage()
+{
+    if (localStorage.getItem("storageQuestions") === null) 
+    {
+        $.ajax({
+            url: "http://80squiz.azurewebsites.net/api/v1/question",
+            type: "Get",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) 
+            {
+                localStorage["storageQuestions"] = JSON.stringify(data);
+            },
+            error: function () { alert('error'); }
+        });
+    }
 }
 

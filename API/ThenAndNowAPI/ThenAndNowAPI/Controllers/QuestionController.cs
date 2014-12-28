@@ -23,9 +23,21 @@ namespace ThenAndNowAPI.Controllers
         }
 
         // GET: api/Question/5
-        public string Get(int id)
-        {
-            return "value";
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
+        public IEnumerable<Question> Get(string values)
+        {            
+            List<String> arrIDs = new List<string>();
+            String ids = values.Replace("[", "");
+            ids = ids.Replace("]", "");
+            arrIDs = ids.Split(',').ToList();
+
+            List<Question> arrCorrectAnsw = new List<Question>();
+            foreach (var id in arrIDs)
+            {
+                Question q = QuestionRepository.GetQuestionById(Convert.ToInt32(id));
+                arrCorrectAnsw.Add(q);
+            }
+            return arrCorrectAnsw;
         }
 
         // POST: api/Question

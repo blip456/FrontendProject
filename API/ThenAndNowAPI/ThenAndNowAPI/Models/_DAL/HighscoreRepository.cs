@@ -36,7 +36,7 @@ namespace ThenAndNowAPI.Models._DAL
             List<Highscore> lstHighs = new List<Highscore>();
 
             // database reader
-            DbDataReader reader = Database.GetData("SELECT * FROM dbo.highscores");
+            DbDataReader reader = Database.GetData("SELECT * FROM dbo.highscores ORDER BY highscores_score DESC");
 
             while (reader.Read())
             {

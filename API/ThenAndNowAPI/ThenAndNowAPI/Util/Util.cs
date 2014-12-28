@@ -9,7 +9,7 @@ namespace ThenAndNowAPI.Util
 {
     public class Util
     {
-        public static int CalculateScore(List<String> arrAnswers, List<String> arrIDs)
+        public static int CalculateScore(List<String> arrAnswers, List<String> arrIDs, int iTimeInSeconds)
         {
             int score = 0;
             int i = 0;
@@ -18,15 +18,15 @@ namespace ThenAndNowAPI.Util
                 Question q = QuestionRepository.GetQuestionById(Convert.ToInt32(id));
                 if (Convert.ToBoolean(arrAnswers[i]))
                     if(q.Year < 80)
-                    score += 10;
+                    score += 50;
                 if (!Convert.ToBoolean(arrAnswers[i]))
                     if (q.Year >= 80)
-                        score+=10;
+                        score+=50;
 
                 i++;
             }
 
-            return score;
+            return score-iTimeInSeconds;
         }
     }
 }
