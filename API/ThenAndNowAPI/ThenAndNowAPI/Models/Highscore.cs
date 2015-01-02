@@ -32,9 +32,9 @@ namespace ThenAndNowAPI.Models
             set { _score = value; }
         }
 
-        private DateTime _date;
+        private String _date;
 
-        public DateTime Date
+        public String Date
         {
             get { return _date; }
             set { _date = value; }

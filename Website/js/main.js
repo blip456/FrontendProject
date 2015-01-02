@@ -75,11 +75,11 @@ var txtLCD;
 var txtCounter1;
 var txtCounter2;
 var txtCounter3;
-var sound1 = new Audio("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/button1.wav"); 
-var sound2 = new Audio("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/button2.wav"); 
-var sound3 = new Audio("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/button3.wav"); 
-var sound4 = new Audio("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/button4.wav"); 
-var close = new Audio("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/close.wav"); 
+var sound1 = new Audio("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/button1.mp3"); 
+var sound2 = new Audio("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/button2.mp3"); 
+var sound3 = new Audio("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/button3.mp3"); 
+var sound4 = new Audio("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/button4.mp3"); 
+var close = new Audio("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/close.mp3"); 
 
 
 // Mini game elements
@@ -174,9 +174,10 @@ function next_intro()
 }
 
 function next_enter_name()
-{
+{  
     if(isNameInCassette)
     {
+
         enter_name.className = "hidden";
         quiz.className = "";
         quiz.className = game_window_class;  
@@ -216,7 +217,7 @@ function next_enter_name()
         btnAfter.addEventListener("mousedown", function(){nextQuestion(false); pressEffectDown(this);});
         //btnForwardDown.addEventListener("mouseup", function(){pressEffectUp(); nextQuestion(false);});
 
-        window.addEventListener("mouseup", function(){pressEffectUp();});
+        document.addEventListener("mouseup", function(){pressEffectUp();});
 
         // Varia
         hideAllQuestions();
@@ -235,13 +236,17 @@ function next_enter_name()
 function pressEffectDown(el)
 {
     playRandomClickSound();
-    el.classList.toggle('hidden');
+    //el.classList.toggle('hidden');
+    el.setAttribute("class", "hover hidden");
     clickedElement = el;
 }
 
 function pressEffectUp()
 {
-    clickedElement.classList.toggle('hidden');    
+    //clickedElement.classList.toggle('hidden');      
+    if(clickedElement != undefined)   
+        clickedElement.setAttribute("class", "hover");
+
 }
 
 function playRandomClickSound()
@@ -264,10 +269,7 @@ function playSoundEffect(sound)
 {
     sound.load();
     sound.play();
-    sound.onended = function()
-    {
-        sound.currentTime=0;
-    }
+
 }
 
 

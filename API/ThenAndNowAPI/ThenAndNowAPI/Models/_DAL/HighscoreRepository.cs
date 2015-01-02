@@ -18,7 +18,7 @@ namespace ThenAndNowAPI.Models._DAL
                 high.ID = Convert.ToInt32(reader["highscores_id"]);
                 high.Name = Convert.ToString(reader["highscores_name"]);
                 high.Score = Convert.ToInt32(reader["highscores_score"]);
-                high.Date = Convert.ToDateTime(reader["highscores_date"]);
+                high.Date = Convert.ToDateTime(reader["highscores_date"]).ToString("dd-MM-yyyy");
                 high.Location = Convert.ToString(reader["highscores_location"]);
                 return high;
             }

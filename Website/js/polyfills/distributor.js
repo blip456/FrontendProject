@@ -1,5 +1,5 @@
 Modernizr.load({  
   test: Modernizr.classlist,     
-  nope: 'js/polyfills/classList2.js'   
+  nope: 'js/polyfills/classList3.js'   
 });
 
