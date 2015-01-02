@@ -1,19 +1,18 @@
 <!doctype html>
-<html>
+<html class="no-js">
 
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>The Big 80s Quiz</title>
         <link href="css/site.css" rel="stylesheet" />
+        <script src="js/polyfills/modernizr.custom.js" type="text/javascript"></script>
     </head>
 
     <body ng-app>
         <div class="rainbow rainbow_left"></div>
         <div class="rainbow rainbow_right"></div>
         <div id="banner">
-            <div id="logo"></div>
-
         </div>
 
         <div id="content">
@@ -32,7 +31,7 @@
                     <input type="text" placeholder="Name" name="txtName" id="txtName" class="txt_big drag" maxlength="16" draggable="true"
                            ondragstart="drag(event)"/>
 
-                    <img src="arrow.svg" class="arrow" id="helparrow"/>
+                    <img src="https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/Arrow.svg" class="arrow" id="helparrow"/>
                     <img src="Recorder.svg" class="inject-me recorder" id="startRecorder" ondrop="drop(event)" ondragover="allowDrop(event)"/>
                     <!--                    <input type="button" value="Next" name="btnEnterNameNext" class="btn_big"/>-->
                 </div>                                
@@ -68,7 +67,7 @@
                                 <p>When was the {{q.Quest}} released?</p>                                
                             </div> 
                             <img ng-src="{{q.ImgURL}}" class="quizImages"/>  
-                            <p>Press &#171; if you think before or &#187; if you think after 1980</p>                                                  
+                            <p id="quickInstructione">Press <i class="btnBeforeAfter before"></i> if you think before or <i class="btnBeforeAfter after"></i> if you think after 1980</p>                                                  
                         </li>                                          
                     </ul>  
                     <br style="clear: both" />                                                         
@@ -90,20 +89,16 @@
 
         </div>
 
-        <footer>
-            <p>&copy; <a href="http://www.yoranbroodcooren.me">Yoran Broodcooren</a>
-            </p>
-        </footer>
-
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-
+        <script src="js/howler.min.js"></script>
         <script src="js/angular/angular.js"></script>
         <script src="js/jquery-2.1.1.min.js"></script>
         <script src="js/app/Question/Question.js"></script>
         <script src="js/app/Question/QuestionController.js"></script>
         <script src="js/svg-injector.js"></script>
         <script src="js/main.js"></script>
-        <script src="js/snowstorm.js"></script>
+        <script src="js/snowstorm.js"></script>        
+        <script src="js/polyfills/distributor.js" type="text/javascript"></script>
     </body>
 
 </html>

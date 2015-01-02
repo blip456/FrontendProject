@@ -21,6 +21,13 @@ html {
     -ms-user-select: none;
     user-select: none;
     font-family: 'Arial', 'Helvetica', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body:after{
+    display:none;
+    content: url(https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/ButtonHover.svg);
 }
 
 body {
@@ -32,11 +39,12 @@ body {
     padding: 0;
     min-height: 100%;
 
+
     #banner {
         background: $bannerBlue;
         width: 100%;
         height: 250px;
-        background-image: url("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/Banner.png");
+        background-image: url("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/Banner.svg");
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -47,7 +55,30 @@ body {
         width: 100%;
         height: 40px;
         background: $bannerBlue;
+        position: absolute;
+        left: 0;
+        bottom: 0;                
+        p
+        {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            line-height: 40px;
+            a
+            {
+                color: $green;
+                text-decoration: none;
+                opacity: 0.7;
+            }
+
+            a:hover
+            {
+
+                opacity: 1;
+            }
+        }
     }
+
 
     .rainbow {
         position: absolute;
@@ -82,6 +113,7 @@ body {
         {     
             width: 100%;
             min-height: 512px;
+            margin: 32px 0px 72px 0px;
 
             .game_window
             {
@@ -156,7 +188,7 @@ body {
                 #txtName
                 {
                     background: none;
-                    background: url("../Cassette.svg");
+                    background: url("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/Cassette.svg");
                     background-repeat: no-repeat;
                     background-size: 400px 246px;
                     background-position: bottom, center;
@@ -178,7 +210,7 @@ body {
                     padding: 8px;
                     color: black;
                     background: none;
-                    background: url("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/btn.png");
+                    background: url("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/Button.svg");
                     background-repeat: no-repeat;
                     background-size: contain;
                     outline: none;
@@ -190,14 +222,26 @@ body {
 
                 .btn_big:hover, .btn_big:focus
                 {
-                    background: url("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/btn_hover.png");
-                    -webkit-transition: all 0.2s ease-out;
-                    -moz-transition: all 0.2s ease-out;
-                    -ms-transition: all 0.2s ease-out;
-                    -o-transition: all 0.2s ease-out;
-                    transition: all 0.2s ease-out;
+                    background: url("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/ButtonHover.svg");                    
                     outline: none;
                     cursor: pointer;
+                }
+
+                .btnBeforeAfter
+                {
+                    width: 20px;
+                    height: 32px;
+                    display: inline-block;
+                    background: url("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/buttonBeforeAfter.svg");
+                }
+
+                .after
+                {
+                    -webkit-transform: rotate(180deg);
+                    -moz-transform: rotate(180deg);
+                    -ms-transform: rotate(180deg);
+                    -o-transform: rotate(180deg);
+                    transform: rotate(180deg);
                 }
 
                 .txt_big
@@ -295,13 +339,13 @@ body {
             {
                 width: 64%;
             }
-            
+
             #howto #explain > p
             {
                 font-size: 20px;
                 margin: 0px;
             }
-            
+
             #howto #explain > h2
             {
                 margin: 20px;

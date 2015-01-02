@@ -12,7 +12,11 @@ var isIE = false;
 if ((navigator.appVersion.indexOf("MSIE 8.") != -1) || (navigator.appVersion.indexOf("MSIE 7.") != -1))
 {
     isIE = true;
-}    
+} 
+
+if (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > 0) {
+    isIE = true;
+}
 
 // Mobile checking
 var isMobile = false;
@@ -55,6 +59,7 @@ var nameRecorder;
 var cassettePlaceholder;
 var cassettePlaceholderName;
 var btnEnterNameNext;
+var btnEnterNameNextDown;
 var lblDrag;
 var isNameInCassette = false;
 
@@ -74,6 +79,7 @@ var sound1 = new Audio("https://imagesyoranbroodcooren.blob.core.windows.net/the
 var sound2 = new Audio("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/button2.wav"); 
 var sound3 = new Audio("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/button3.wav"); 
 var sound4 = new Audio("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/button4.wav"); 
+var close = new Audio("https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/close.wav"); 
 
 
 // Mini game elements
@@ -147,7 +153,7 @@ function next_intro()
     inputName = enter_name.querySelector("#txtName");
     nameRecorder = enter_name.querySelector("#startRecorder");
     btnEnterNameNext = enter_name.querySelector("#groupPlay");
-    var btnEnterNameNextDown = enter_name.querySelector("#groupPlayPressed");
+    btnEnterNameNextDown = enter_name.querySelector("#groupPlayPressed");
     arrow = enter_name.querySelector("#helparrow");
     cassettePlaceholder = nameRecorder.querySelector("#Cassette");
     cassettePlaceholderName = nameRecorder.querySelector("#yourNameCassette");
@@ -159,13 +165,12 @@ function next_intro()
     nameRecorder.setAttribute("ondragover", "allowDrop(event)");
     cassettePlaceholder.setAttribute("class", "hidden");
     txtLCD.setAttribute("class", "lcd_display");
-    btnEnterNameNext.classList.add("hover");
-    inputName.focus();
-    
+    btnEnterNameNext.setAttribute("class", "hover");
 
     // Listener    
     btnEnterNameNext.addEventListener("mousedown", function(){pressEffectDown(this);});
-    btnEnterNameNextDown.addEventListener("mouseup", function(){pressEffectUp();next_enter_name()});    
+    btnEnterNameNextDown.addEventListener("mouseup", function(){pressEffectUp();next_enter_name();});
+
 }
 
 function next_enter_name()
@@ -206,10 +211,12 @@ function next_enter_name()
         btnAfter.setAttribute("class", "hover");
 
         // Listener
-        btnBefore.addEventListener("mousedown", function(){nextQuestion(true); pressEffectDown(this)});        
-        btnBeforeDown.addEventListener("mouseup", function(){pressEffectUp();});
-        btnAfter.addEventListener("mousedown", function(){nextQuestion(false); pressEffectDown(this)});
-        btnForwardDown.addEventListener("mouseup", function(){pressEffectUp();});
+        btnBefore.addEventListener("mousedown", function(){nextQuestion(true); pressEffectDown(this);});        
+        //btnBeforeDown.addEventListener("mouseup", function(){pressEffectUp(); nextQuestion(true);});
+        btnAfter.addEventListener("mousedown", function(){nextQuestion(false); pressEffectDown(this);});
+        //btnForwardDown.addEventListener("mouseup", function(){pressEffectUp(); nextQuestion(false);});
+
+        window.addEventListener("mouseup", function(){pressEffectUp();});
 
         // Varia
         hideAllQuestions();
@@ -227,15 +234,14 @@ function next_enter_name()
 // General stuff
 function pressEffectDown(el)
 {
+    playRandomClickSound();
     el.classList.toggle('hidden');
     clickedElement = el;
-    playRandomClickSound();
 }
 
 function pressEffectUp()
 {
-    clickedElement.classList.toggle('hidden');
-    //sound2.play();
+    clickedElement.classList.toggle('hidden');    
 }
 
 function playRandomClickSound()
@@ -256,6 +262,7 @@ function playRandomClickSound()
 
 function playSoundEffect(sound)
 {
+    sound.load();
     sound.play();
     sound.onended = function()
     {
@@ -318,14 +325,13 @@ function drag(ev)
 
 function drop(ev) 
 {    
-    arrow.classList.add("visibility");
+    $(arrow).addClass("visibility");
+    playSoundEffect(close);
     isNameInCassette = true;
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
     player_name = inputName.value;
-    //TODO: set innerHTML = inputName element
-    //cassettePlaceholder.innerHTML += '<foreignObject x="0" y="160" width="325px" height="256px"> <input disabled type="text" placeholder="Name" name="txtName" id="cassetteName" class="txt_big" maxlength="16" value="'+player_name+'" draggable="true" ondragstart="drag(event)"/></foreignObject>';
     cassettePlaceholder.setAttribute("class", "visible");
     cassettePlaceholderName.setAttribute("class", "cassetteName");
     cassettePlaceholderName.innerHTML = player_name;
@@ -353,45 +359,48 @@ function showNextQuestion()
 
 function nextQuestion(isBefore)
 {
-    if(iQuestion < 29)
+    if(isBefore != undefined)
     {
-        // Add answer to array
-        arrAnswers.push(isBefore);
-
-        iQuestion +=1
-        if(iQCounterE < 9)
+        if(iQuestion < 29)
         {
-            iQCounterE +=1;
-            txtCounter3.innerHTML = iQCounterE;
+            // Add answer to array
+            arrAnswers.push(isBefore);
+
+            iQuestion +=1
+            if(iQCounterE < 9)
+            {
+                iQCounterE +=1;
+                txtCounter3.innerHTML = iQCounterE;
+            }
+            else
+            {   
+                iQCounterE = 0;
+                iQCounterT +=1;
+                txtCounter3.innerHTML = iQCounterE ;           
+                txtCounter2.innerHTML = iQCounterT;            
+            }
+
+            showNextQuestion();
+
+            // Check if 15 and start minigame
+            if(iQuestion == 14)
+                startMiniGame();
         }
-        else
-        {   
-            iQCounterE = 0;
-            iQCounterT +=1;
-            txtCounter3.innerHTML = iQCounterE ;           
-            txtCounter2.innerHTML = iQCounterT;            
-        }
+        // End the game
+        else if(iQuestion == 29)
+        {
+            arrAnswers.push(isBefore);
+            // Stop the timer
+            window.clearInterval(blinkTimer);
+            if(isFromLocal)        
+                localStorage.removeItem("storageQuestions");
+            if(!isScorePushed)
+            {            
+                AddScore();            
+                GetAnswers();
 
-        showNextQuestion();
-
-        // Check if 15 and start minigame
-        //if(iQuestion == 14)
-        //startMiniGame();
-    }
-    // End the game
-    else if(iQuestion == 29)
-    {
-        arrAnswers.push(isBefore);
-        // Stop the timer
-        window.clearInterval(blinkTimer);
-        if(isFromLocal)        
-            localStorage.removeItem("storageQuestions");
-        if(!isScorePushed)
-        {            
-            AddScore();            
-            GetAnswers();
-
-            isScorePushed = true;
+                isScorePushed = true;
+            }
         }
     }
 }
@@ -400,7 +409,7 @@ function startMiniGame()
 {
     pressEffectUp();
 
-    minigame.classList.remove("visibility");
+    $(minigame).removeClass("visibility");
     //Mini game will be about quickly rewinging a cassette tape with a Bic pen > your quiz time keeps running
 
     // Vars
@@ -443,8 +452,8 @@ function startMiniGame()
 
 function ShowResult()
 {
-    result.classList.remove("hidden");
-    quiz.classList.add("hidden");
+    $(result).removeClass("hidden");
+    $(quiz).addClass("hidden");
 
     var stringbuilder = "";
     var correct = "";
@@ -541,7 +550,7 @@ function AddScore()
         data: JSON.stringify([player_name, iTime, city + ", "+ country, JSON.stringify(arrAnswers), JSON.stringify(arrQuestionIDs)]),
         contentType: 'application/json; charset=utf-8',
         success: function (data) { GetScore();},
-        error: function () { alert('error'); }
+        error: function () { alert('error add score'); }
     });
 }
 
@@ -552,7 +561,7 @@ function GetAnswers()
         type: "GET",
         contentType: 'application/json; charset=utf-8',
         success: function (data) { arrCorrectAnswers = data; ShowResult(); },
-        error: function () { alert('error'); }
+        error: function () { alert('error get answers'); }
     });
 }
 
@@ -563,7 +572,7 @@ function GetScore()
         type: "GET",
         contentType: 'application/json; charset=utf-8',
         success: function (data) { EditScore(data); },
-        error: function () { alert('error'); }
+        error: function () { alert('error get score'); }
     });
 }
 
