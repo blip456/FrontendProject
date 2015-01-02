@@ -161,6 +161,9 @@ function next_intro()
     txtLCD = nameRecorder.querySelector("#txtLCD");
 
     // Setting elements/vars
+    nameRecorder.setAttribute("width", "333");
+    nameRecorder.setAttribute("height", "500");
+    nameRecorder.setAttribute("preserveAspectRatio", "xMidYMid meet"); 
     nameRecorder.setAttribute("ondrop", "drop(event)");
     nameRecorder.setAttribute("ondragover", "allowDrop(event)");
     cassettePlaceholder.setAttribute("class", "hidden");
@@ -185,7 +188,7 @@ function next_enter_name()
         // Quiz
         // Getting elements/vars
         quizRecorder = quiz.querySelector(".recorder");
-        nameRecorder = quiz.querySelector("#yourNameCassette");
+        cassettePlaceholderName = quiz.querySelector("#yourNameCassette");
         ulQuestions = quiz.querySelector("#questions");
         recordingLight = quiz.querySelector("#RecordingLight");
         btnBefore = quiz.querySelector("#groupBack");
@@ -203,9 +206,12 @@ function next_enter_name()
 
 
         // Setting elements/vars
+        quizRecorder.setAttribute("width", "333");
+        quizRecorder.setAttribute("height", "500");
+        quizRecorder.setAttribute("preserveAspectRatio", "xMidYMid meet"); 
         lengthAllQuestions = allQuestions.length;
-        nameRecorder.setAttribute("class", "cassetteName");
-        nameRecorder.innerHTML = player_name;
+        cassettePlaceholderName.setAttribute("class", "cassetteName");
+        cassettePlaceholderName.textContent = player_name;
         lblDrag.setAttribute("class", "hidden");
         txtLCD.setAttribute("class", "lcd_display");
         btnBefore.setAttribute("class", "hover");
@@ -222,7 +228,7 @@ function next_enter_name()
         // Varia
         hideAllQuestions();
         showNextQuestion();
-        txtCounter3.innerHTML = iQCounterE;
+        txtCounter3.textContent = iQCounterE;
 
         blinkTimer = setInterval(function()
                                  {
@@ -327,6 +333,7 @@ function drag(ev)
 
 function drop(ev) 
 {    
+    console.log(inputName.value);
     $(arrow).addClass("visibility");
     playSoundEffect(close);
     isNameInCassette = true;
@@ -336,7 +343,7 @@ function drop(ev)
     player_name = inputName.value;
     cassettePlaceholder.setAttribute("class", "visible");
     cassettePlaceholderName.setAttribute("class", "cassetteName");
-    cassettePlaceholderName.innerHTML = player_name;
+    cassettePlaceholderName.textContent = "test";
     lblDrag.setAttribute("class", "hidden");
 
 }
@@ -372,14 +379,14 @@ function nextQuestion(isBefore)
             if(iQCounterE < 9)
             {
                 iQCounterE +=1;
-                txtCounter3.innerHTML = iQCounterE;
+                txtCounter3.textContent = iQCounterE;
             }
             else
             {   
                 iQCounterE = 0;
                 iQCounterT +=1;
-                txtCounter3.innerHTML = iQCounterE ;           
-                txtCounter2.innerHTML = iQCounterT;            
+                txtCounter3.textContent = iQCounterE ;           
+                txtCounter2.textContent = iQCounterT;            
             }
 
             showNextQuestion();
@@ -540,7 +547,7 @@ function controlTimer()
             console.log("Game over");
         }
         iSec += 1;                                
-        txtLCD.innerHTML = preMin+iMin+":"+preSec+iSec;
+        txtLCD.textContent = preMin+iMin+":"+preSec+iSec;
     }
 }
 
