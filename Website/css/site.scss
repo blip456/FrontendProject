@@ -47,6 +47,19 @@ $bicBlue: #6666cc;
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Prisma';
+    src: url('fonts/prisma-webfont.eot');
+    src: url('fonts/prisma-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/prisma-webfont.woff2') format('woff2'),
+         url('fonts/prisma-webfont.woff') format('woff'),
+         url('fonts/prisma-webfont.ttf') format('truetype'),
+         url('fonts/prisma-webfont.svg#prismaregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 
 html {
     min-height: 100%;

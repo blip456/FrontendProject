@@ -2,6 +2,10 @@
 Thumbs.db
 ehthumbs.db
 
+# Movie files (not the .mov because it is the renderd promo
+.avi
+.mp4
+
 # Folder config file
 Desktop.ini
 
@@ -26,8 +30,7 @@ $RECYCLE.BIN/
 .LSOverride
 
 # Icon must end with two \r
-Icon
-
+Icon
 # Thumbnails
 ._*
 
