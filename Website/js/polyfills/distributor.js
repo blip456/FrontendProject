@@ -1,5 +1,5 @@
 Modernizr.load({  
-  test: Modernizr.classlist,     
-  nope: 'js/polyfills/classList3.js'   
+  test: Modernizr.placeholder,     
+  nope: 'js/polyfills/placeholders.min.js'       
 });
 

@@ -6,10 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>The Big 80s Quiz</title>
         <link href="css/site.css" rel="stylesheet" />
-        <script src="//cdn.polyfill.io/v1/polyfill.min.js" async defer></script>
-
-        <script src="js/polyfills/modernizr.custom.js" type="text/javascript"></script>    
-        <script src="js/polyfills/distributor.js" type="text/javascript"></script>
+        <script src="js/polyfills/modernizr.custom.js" type="text/javascript"></script> 
     </head>
 
     <body ng-app>
@@ -30,13 +27,16 @@
                 </div>
 
                 <div id="enter_name" class="hidden game_window">
-                    <h1>Write your name</h1>
-                    <input type="text" placeholder="Name" name="txtName" id="txtName" class="txt_big drag" maxlength="16" draggable="true"
-                           ondragstart="drag(event)"/>
+                    <h1>Write your name</h1>    
+                    <div draggable="true" ondragstart="drag(event)">
+                        <input type="text" placeholder="Name" name="txtName" id="txtName" class="txt_big drag" maxlength="16" />
+                    </div>             
+                    
 
                     <img src="https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/Arrow.svg" class="arrow" id="helparrow"/>
-                    <img src="Recorder.svg" class="inject-me recorder" id="startRecorder" ondrop="drop(event)" ondragover="allowDrop(event)"/>
-                    <!--                    <input type="button" value="Next" name="btnEnterNameNext" class="btn_big"/>-->
+                     <div ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <img src="Recorder.svg" class="inject-me recorder" id="startRecorder" ondrop="drop(event)" ondragover="allowDrop(event)"/>                    
+                    </div>
                 </div>                                
 
                 <div id="quiz" class="hidden game_window">
@@ -99,7 +99,8 @@
         <script src="js/app/Question/Question.js"></script>
         <script src="js/app/Question/QuestionController.js"></script>
         <script src="js/svg-injector.js"></script>    
-        <script src="js/main.js"></script>        
+        <script src="js/main.js"></script>     
+        <script src="js/polyfills/distributor.js" type="text/javascript"></script>      
         <script src="js/snowstorm.js"></script>        
     </body>
 

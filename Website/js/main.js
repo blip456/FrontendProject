@@ -6,6 +6,7 @@ if (appCache.status == window.applicationCache.UPDATEREADY) {
     appCache.swapCache();  // The fetch was successful, swap in the new cache.
 }*/
 
+
 // Browser checking
 
 var isIE = false;
@@ -17,6 +18,12 @@ if ((navigator.appVersion.indexOf("MSIE 8.") != -1) || (navigator.appVersion.ind
 if (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > 0) {
     isIE = true;
 }
+
+var isIE9 = false;
+if (navigator.appVersion.indexOf("MSIE 9.") != -1)
+{
+    isIE9 = true;
+} 
 
 // Mobile checking
 var isMobile = false;
@@ -51,7 +58,6 @@ var state = "";
 var country = "";
 var country_code = "";
 var player_name = "";
-var arrow;
 
 // Enter name elements
 var inputName;
@@ -62,6 +68,7 @@ var btnEnterNameNext;
 var btnEnterNameNextDown;
 var lblDrag;
 var isNameInCassette = false;
+var arrow;
 
 // Quiz elements
 var quizRecorder;
@@ -170,10 +177,17 @@ function next_intro()
     txtLCD.setAttribute("class", "lcd_display");
     btnEnterNameNext.setAttribute("class", "hover");
 
-    // Listener    
+    // Allowing non drag and drop to just do his stuf
+    if(isIE9 || isMobile)
+    {
+        isNameInCassette = true;
+        lblDrag.textContent = "Press play to start";  
+        arrow.setAttribute("class", "hidden");
+    }
+
+    // Listener     
     btnEnterNameNext.addEventListener("mousedown", function(){pressEffectDown(this);});
     btnEnterNameNextDown.addEventListener("mouseup", function(){pressEffectUp();next_enter_name();});
-
 }
 
 function next_enter_name()
@@ -323,29 +337,39 @@ function getCity(position)
 // Enter name
 function allowDrop(ev) 
 {
-    ev.preventDefault();
+
+    if (ev.preventDefault) {
+        ev.preventDefault(); // Necessary. Allows us to drop.
+    }
+
+    return false;
 }
 
 function drag(ev) 
-{
+{       
     ev.dataTransfer.setData("text", ev.target.id);
 }
 
 function drop(ev) 
 {    
-    console.log(inputName.value);
+    if (ev.preventDefault) {
+        ev.preventDefault(); // Necessary. Allows us to drop.
+    }
+
+
+    //ev.preventDefault();
+
     $(arrow).addClass("visibility");
     playSoundEffect(close);
     isNameInCassette = true;
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(data));
+    inputName.setAttribute("class", "hidden visibility");
+    console.log(inputName);
     player_name = inputName.value;
     cassettePlaceholder.setAttribute("class", "visible");
     cassettePlaceholderName.setAttribute("class", "cassetteName");
-    cassettePlaceholderName.textContent = "test";
+    cassettePlaceholderName.textContent = player_name;
     lblDrag.setAttribute("class", "hidden");
-
+    return false;
 }
 
 
@@ -433,6 +457,8 @@ function startMiniGame()
 
     // Events
     document.onmousewheel = turn;
+    document.addEventListener("DOMMouseScroll", turn, false);
+    document.body.addEventListener("touchmove", turn);
     penisInHole = true;
     function turn(e)
     {
@@ -486,7 +512,7 @@ function ShowResult()
         else if(arrCorrectAnswers[i].Cat.Cat == "Music")            
             stringbuilder += "<li>Q: When was " + arrCorrectAnswers[i].Quest +" first played on the radio?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li><li></li>" ;
         else if(arrCorrectAnswers[i].Cat.Cat == "Inventions")            
-            stringbuilder += "<li>Q: When was the Inventions " + arrCorrectAnswers[i].Quest +" released?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li><li></li>" ;
+            stringbuilder += "<li>Q: When was the " + arrCorrectAnswers[i].Quest +" invented?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li><li></li>" ;
         else if(arrCorrectAnswers[i].Cat.Cat == "Movies")            
             stringbuilder += "<li>Q: When was " + arrCorrectAnswers[i].Quest +" invented?</li><li>A: 19"+arrCorrectAnswers[i].Year +correct+"</li><li></li>" ;
         else if(arrCorrectAnswers[i].Cat.Cat == "Fashion")            
@@ -604,8 +630,7 @@ function CheckLocalStorage()
             {
                 localStorage["storageQuestions"] = JSON.stringify(data);
             },
-            error: function () { alert('error'); }
+            error: function () { alert('error localstorage'); }
         });
     }
 }
-

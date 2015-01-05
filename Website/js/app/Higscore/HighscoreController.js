@@ -18,6 +18,7 @@ var HighscoreController = function($scope, $http)
     var onError = function(response)
     {        
         console.log($scope.highscores);
+        alert("error on scoreget")
     };
     $http.get("http://80squiz.azurewebsites.net/api/v1/highscore").then(onScoreGet, onError);    
 }

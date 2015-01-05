@@ -13,8 +13,6 @@ var QuestionController = function($scope, $http)
             arrQuestionIDs.push(value.ID);
             $scope.questions.push(q);
         }); 
-        console.log($scope.questions);
-
     };
     var onError = function(response)
     {
@@ -34,7 +32,6 @@ var QuestionController = function($scope, $http)
         {
             alert("You are offline and have no webstorage! This site is pretty useless then");
         }
-        console.log($scope.questions);
     };
     $http.get("http://80squiz.azurewebsites.net/api/v1/question").then(onQuestionGet, onError);    
 }
