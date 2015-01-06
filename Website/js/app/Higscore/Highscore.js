@@ -9,13 +9,14 @@
 */
 
 //Contstructor functie (moet met hoofdletter beginnen)
-function Highscore(name, id, score, date, location)
+function Highscore(name, id, score, date, location, rank)
 {
     this.name = name;
     this.id = id;   
     this.score = score;
     this.date = date;
     this.location = location;
+    this.rank = rank;
 }
 
 //Properties instellen
@@ -34,7 +35,10 @@ Highscore.prototype = {
     set Date(v){this.date = v},
     
     get Location(){return this.location},
-    set Location(v){this.location = v}
+    set Location(v){this.location = v},
+    
+    get Rank(){return this.rank},
+    set Rank(v){this.rank = v}
 
     //Methodes
 }

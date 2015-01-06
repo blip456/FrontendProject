@@ -28,20 +28,20 @@
 
                 <div id="enter_name" class="hidden game_window">
                     <h1>Write your name</h1>    
-                    <div draggable="true" ondragstart="drag(event)">
+                    <div draggable="true" ondragstart="drag(event)" title="Fill in your name and drag and drop it in the cassette player below">
                         <input type="text" placeholder="Name" name="txtName" id="txtName" class="txt_big drag" maxlength="16" />
                     </div>             
                     
 
-                    <img src="https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/Arrow.svg" class="arrow" id="helparrow"/>
+                    <img src="images/Arrow.svg" alt="Arrow for drag and drop" title="Arror for drag and drop" class="arrow" id="helparrow"/>
                      <div ondrop="drop(event)" ondragover="allowDrop(event)">
-                        <img src="Recorder.svg" class="inject-me recorder" id="startRecorder" ondrop="drop(event)" ondragover="allowDrop(event)"/>                    
+                        <img src="images/Recorder.svg" alt="Recorder" title="Drag and drop your cassette in this recorder" class="inject-me recorder" id="startRecorder" ondrop="drop(event)" ondragover="allowDrop(event)"/>                    
                     </div>
                 </div>                                
 
                 <div id="quiz" class="hidden game_window">
                     <h1>Answer the questions</h1>
-                    <img class="inject-me recorder" id="Recorder" src="Recorder.svg">
+                    <img class="inject-me recorder" alt="Recorder" title="Use this recorder to answer the questions" id="Recorder" src="images/Recorder.svg">
                     <ul id="questions">
                         <li ng-repeat="q in questions">
                             <h2 class="category">{{q.Category}}</h2>
@@ -69,7 +69,7 @@
                             <div ng-if="q.Category == 'Game Consoles'">
                                 <p>When was the {{q.Quest}} released?</p>                                
                             </div> 
-                            <img ng-src="{{q.ImgURL}}" class="quizImages"/>  
+                            <img ng-src="{{q.ImgURL}}" alt="Quiz image" title="Quiz image" class="quizImages"/>  
                             <p id="quickInstructione">Press <i class="btnBeforeAfter before"></i> if you think before or <i class="btnBeforeAfter after"></i> if you think after 1980</p>                                                  
                         </li>                                          
                     </ul>  
@@ -77,7 +77,7 @@
                 </div>
 
                 <div id="mini_game" class="visibility overlay">
-                    <img src="MiniGameCassette.svg" class="inject-me" id="miniGameCassette"/>
+                    <img src="images/MiniGameCassette.svg" alt="Mini game cassette" title="Scroll realy fast to rewind the tape" class="inject-me" id="miniGameCassette"/>
                 </div>
 
                 <div id="result" class="hidden game_window">

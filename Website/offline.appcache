@@ -1,5 +1,7 @@
 CACHE MANIFEST
 index.html
+howto.html
+highscore.html
 css/site.css
 js/main.js
 js/angular/angular.js
@@ -8,15 +10,20 @@ js/app/Question/Question.js
 js/app/Question/QuestionController.js
 js/svg-injector.js
 js/snowstorm.js
-MiniGameCassette.svg
-Recorder.svg
-https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/Banner.png
-https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/btn.png
-https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/button1.wav
-https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/button2.wav
-https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/button3.wav
-https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/button4.wav
-https://imagesyoranbroodcooren.blob.core.windows.net/thenandnowimg/btn_hover.png
+images/Arrow.svg
+images/Banner.svg
+images/Button.svg
+images/buttonBeforeAfter.svg
+images/ButtonHover.svg
+images/Cassette.svg
+images/MiniGameCassette.svg
+images/Recorder.svg
+images/DragDrop.png
+images/GameControl.png
+images/Logo.png
+images/pressPlay.png
+images/TimeQuestion.png
+images/WriteName.png
 
 NETWORK:
 *

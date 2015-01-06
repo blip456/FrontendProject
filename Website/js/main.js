@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", init);
-/*var appCache = window.applicationCache;
-appCache.update(); // Attempt to update the user's cache.
+var appCache = window.applicationCache;
+//appCache.update(); // Attempt to update the user's cache.
 
 if (appCache.status == window.applicationCache.UPDATEREADY) {
     appCache.swapCache();  // The fetch was successful, swap in the new cache.
-}*/
+}
 
 
 // Browser checking

@@ -20,33 +20,39 @@
             <div id="game" ng-controller="HighscoreController">
                 <div class="game_window">
                     <h1>Highscores</h1>                
-                    <table>
-                        <tr>
-                            <th>Name</th>
-                            <th>Score</th> 
-                            <th>Date</th>
-                            <th>Location</th>
-                        </tr>
-                        <tr ng-repeat="s in highscores" >
-                            <td>{{s.Name}}</td>
-                            <td>{{s.Score}}</td> 
-                            <td>{{s.Date}}</td>
-                            <td>{{s.Location}}</td>
-                        </tr>
+                    <table id="highscores">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Score</th> 
+                                <th>Name</th> 
+                                <th>Date</th>
+                                <th>Location</th>
+                            </tr>                           
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="s in highscores" >
+                                <td>{{s.Rank}}</td>
+                                <td>{{s.Score}}</td> 
+                                <td>{{s.Name}}</td> 
+                                <td>{{s.Date}}</td>
+                                <td>{{s.Location}}</td>
+                            </tr>
+                        </tbody>                        
                     </table> 
                     <a href="index.html">Go Back</a>                                                        
                 </div>
             </div>
         </div>
 
-            <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 
-            <script src="js/angular/angular.js"></script>
-            <script src="js/jquery-2.1.1.min.js"></script>
-            <script src="js/app/Higscore/Highscore.js"></script>
-            <script src="js/app/Higscore/HighscoreController.js"></script>
-            <script src="js/svg-injector.js"></script>
-            <script src="js/snowstorm.js"></script>
-            </body>
+        <script src="js/angular/angular.js"></script>
+        <script src="js/jquery-2.1.1.min.js"></script>
+        <script src="js/app/Higscore/Highscore.js"></script>
+        <script src="js/app/Higscore/HighscoreController.js"></script>
+        <script src="js/svg-injector.js"></script>
+        <script src="js/snowstorm.js"></script>
+    </body>
 
-        </html>
+</html>
